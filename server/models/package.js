@@ -18,6 +18,10 @@ const packageSchema = new Schema({
         type: String,
         required: true
     },
+    city: {
+        type: String,
+        required: true
+    },
     driverID: {
         type: String,
         required: true

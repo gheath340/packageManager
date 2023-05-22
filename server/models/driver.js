@@ -8,7 +8,7 @@ const driverSchema = new Schema({
     }, 
     packages: {
         type: Array,
-        required: true
+        default: []
     },
     active: {
         type: String,
@@ -21,6 +21,10 @@ const driverSchema = new Schema({
     nextStop: {
         type: String,
         default: "not active"
+    },
+    city: {
+        type: String,
+        required: true
     }
 
 })

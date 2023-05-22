@@ -17,43 +17,43 @@ const Package = require('./models/package')
 const Driver = require('./models/driver')
 
 app.get('/packages', async (req, res) => {
-    const packages = await Package.find()
+    const p = await Package.find()
 
-    res.json(packages)
+    res.json(p)
 })
 
 app.get('/package/:id', async (req, res) => {
-    const package = await Package.findById(req.body.id)
+    const p = await Package.findById(req.body.id)
 
-    res.json(package)
+    res.json(p)
 })
 
 app.post('/package/new', (req, res) => {
-    const package = new Package({ tba: req.body.tba, weight: req.body.weight, items: req.body.items, location: req.body.location, driverID: req.body.driverID })
-    package.save()
+    const p = new Package({ tba: req.body.tba, weight: req.body.weight, items: req.body.items, location: req.body.location, city: req.body.city, driverID: req.body.driverID })
+    p.save()
 
-    res.json(package)
+    res.json(p)
 })
 
 app.put('/package/update/:id', async (req, res) => {
     //recieve all info about the package being changed & update all info
-    const package = await Package.findById(req.body.id)
+    const p = await Package.findById(req.body.id)
 
-    package.tba = req.body.tba
-    package.weight = req.body.weight
-    package.items = req.body.items
-    package.location = req.body.location
-    package.driverID = req.body.driverID
+    p.tba = req.body.tba
+    p.weight = req.body.weight
+    p.items = req.body.items
+    p.location = req.body.location
+    p.driverID = req.body.driverID
 
-    package.save()
+    p.save()
 
-    res.json(package)
+    res.json(p)
 })
 
 app.delete('/package/delete/:id', async (req, res) => {
-    const result = await Package.findByIdAndDelete(req.params.id)
+    const p = await Package.findByIdAndDelete(req.params.id)
 
-    res.json(result)
+    res.json(p)
 })
 
 app.get('/drivers', async (req, res) => {
