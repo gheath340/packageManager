@@ -1,7 +1,10 @@
-function App() {
+import { NavBar } from "./components/navBar";
+
+const App = () => {
   return (
-    <div className="App">
-      <div className="text-4xl">Hello</div>
+    <div className="app">
+      <NavBar />
+      <div className="text-4xl">Hello world</div>
     </div>
   );
 }
