@@ -29,7 +29,7 @@ app.get('/package/:id', async (req, res) => {
 })
 
 app.post('/package/new', (req, res) => {
-    const p = new Package({ tba: req.body.tba, weight: req.body.weight, items: req.body.items, location: req.body.location, city: req.body.city, driverID: req.body.driverID })
+    const p = new Package({ tba: req.body.tba, weight: req.body.weight, item: req.body.item, location: req.body.location, city: req.body.city, driverID: req.body.driverID })
     p.save()
 
     res.json(p)
@@ -41,7 +41,7 @@ app.put('/package/update/:id', async (req, res) => {
 
     p.tba = req.body.tba
     p.weight = req.body.weight
-    p.items = req.body.items
+    p.item = req.body.item
     p.location = req.body.location
     p.driverID = req.body.driverID
 
@@ -70,7 +70,7 @@ app.get('/driver/:id', async (req, res) => {
 
 app.post('/driver/new', (req, res) => {
     //change to match driver info
-    const driver = new Driver({ tba: req.body.tba, weight: req.body.weight, items: req.body.items, location: req.body.location, driverID: req.body.driverID })
+    const driver = new Driver({ driverID: req.body.driverID, packages: req.body.packages, active: req.body.active, lastStop: req.body.lastStop, nextStop: req.body.nextStop })
     driver.save()
 
     res.json(driver)

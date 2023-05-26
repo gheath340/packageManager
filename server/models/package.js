@@ -10,8 +10,8 @@ const packageSchema = new Schema({
         type: String,
         required: true
     },
-    items: {
-        type: Array,
+    item: {
+        type: String,
         required: true
     },
     location: {
