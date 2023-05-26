@@ -25,8 +25,8 @@ export function PackagePage() {
         <>
         <div className="flex flex-col items-center h-full">
             <NavBar />
-            <div className="text-4xl mt-5 xl:mt-10">Packages</div>
-            <div className="flex flex-col lg:flex-row w-full h-full justify-evenly items-center lg">
+            <div className="text-4xl mt-5 mb-5 xl:mt-10 xl:mb-10">Packages</div>
+            <div className="flex flex-col lg:flex-row w-full h-full justify-evenly items-center ">
                 <PackageList packages={packages}/>
             </div>
         </div>
