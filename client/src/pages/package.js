@@ -1,5 +1,7 @@
 import React from "react";
 import { NavBar } from "../components/navBar";
+import { PackageList } from "../components/packageList";
+import { PackageItem } from "../components/package";
 
 export function Package() {
     return (
@@ -8,7 +10,7 @@ export function Package() {
             <NavBar />
             <div className="text-4xl mt-5 xl:mt-10">Packages</div>
             <div className="flex flex-col lg:flex-row w-full h-full justify-evenly items-center lg">
-                
+                <PackageList />
             </div>
         </div>
         </>
