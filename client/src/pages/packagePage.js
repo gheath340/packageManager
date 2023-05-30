@@ -29,12 +29,17 @@ export function PackagePage() {
         setPackages(packages => packages.filter(p => p._id !== data._id))
     }
 
-    const editPackage = async id => {
+    //pass in id you want updated and dict of names and values
+    const editPackage = async (id, newPackageInfo) => {
         const data = await fetch(API_BASE + "/package/update/" + id, {
-            method: "PUT"})
-            .then(res => res.json())
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({tba: newPackageInfo["tba"], weight: newPackageInfo["weight"], item: newPackageInfo["item"], location: newPackageInfo["location"], city: newPackageInfo["city"], driverID: newPackageInfo["driverID"]})
+        }).then(res => res.json())
 
-        
+        setPackages([...packages])
     }
 
     return (
