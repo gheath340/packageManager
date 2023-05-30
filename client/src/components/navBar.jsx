@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 export function NavBar() {
     
@@ -8,7 +10,7 @@ export function NavBar() {
             <div className="text-xl hover:text-gray-500"><Link to="/">Home</Link></div>
             <div className="text-xl hover:text-gray-500"><Link to="/packages">Packages</Link></div>
             <div className="text-xl hover:text-gray-500"><Link to="/drivers">Drivers</Link></div>
-            <div className="fas text-2xl hover:text-gray-500 hover:cursor-pointer">&#xf406;</div>
+            <FontAwesomeIcon icon={faUser} className="text-2xl hover:text-gray-500 cursor-pointer"/>
        </div>
        <div className="border border-black w-11/12 lg:w-5/6"></div>
        </>
