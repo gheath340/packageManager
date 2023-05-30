@@ -21,13 +21,29 @@ export function PackagePage() {
         .catch(err => console.error("Error: ", err))
       }
 
+    const deletePackage = async id => {
+        const data = await fetch(API_BASE + "/package/delete/" + id, {
+          method: "DELETE"})
+          .then(res => res.json())
+    
+        setPackages(packages => packages.filter(p => p._id !== data._id))
+    }
+
+    const editPackage = async id => {
+        const data = await fetch(API_BASE + "/package/update/" + id, {
+            method: "PUT"})
+            .then(res => res.json())
+
+        
+    }
+
     return (
         <>
         <div className="flex flex-col items-center h-full">
             <NavBar />
             <div className="text-4xl mt-5 mb-5 xl:mt-10 xl:mb-10">Packages</div>
             <div className="flex flex-col lg:flex-row w-full h-full justify-evenly items-center ">
-                <PackageList packages={packages}/>
+                <PackageList packages={packages} deletePackage={deletePackage} editPackage={editPackage}/>
             </div>
         </div>
         </>
