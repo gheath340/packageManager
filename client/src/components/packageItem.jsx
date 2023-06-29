@@ -25,7 +25,7 @@ export function PackageItem({ id, tba, weight, item, location, city, driverID, d
                 <p className="mt-1 truncate text-sm leading-5 text-gray-500">{location}</p>
                 <p className="mt-1 truncate text-sm leading-5 text-gray-500">{weight}</p>
             </div>
-            <div className="">
+            <div className="flex-auto">
                 <p className="text-md leading-6 text-gray-900">{item}</p>
                 <div className="mt-1 items-end gap-x-1.5">
                     <p className="text-sm leading-5 text-gray-500">{city}</p>
@@ -33,9 +33,9 @@ export function PackageItem({ id, tba, weight, item, location, city, driverID, d
                 </div>
 
             </div>
-            <div className="">
-                <button onClick={() => deletePackage(id)} className="border rounded-md hover:bg-black hover:text-white hover:duration-200 px-2">Delete</button>
-                <button onClick={() => editPackage(id)} className="border rounded-md hover:bg-black hover:text-white hover:duration-200 px-2">Edit</button>
+            <div className="flex flex-col items-center">
+                <button onClick={() => deletePackage(id)} className="border rounded-md hover:scale-110 hover:duration-200 px-2 w-full">Delete</button>
+                <button onClick={() => editPackage(id)} className="border rounded-md hover:scale-110 hover:duration-200 px-2 w-full">Edit</button>
             </div>
         </li>
 
