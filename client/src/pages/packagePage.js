@@ -29,6 +29,10 @@ export function PackagePage() {
         setPackages(packages => packages.filter(p => p._id !== data._id))
     }
 
+    //WORKING ON EDITING PACKAGES
+    //WROTE EDIT PACKAGE FUNCITON
+    //NEED TO WORK WITH PACAKGEITEM FILE AND MAKE EDIT BUTTON OPEN NEW PAGE TO EDIT AND HAVE BUTTON ON THAT PAGE THAT GETS ALL INFO AND CALLS EDIT PACKAGE
+
     //pass in id you want updated and dict of names and values
     const editPackage = async (id, newPackageInfo) => {
         const data = await fetch(API_BASE + "/package/update/" + id, {
