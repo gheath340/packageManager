@@ -7,6 +7,10 @@ import { useState, useEffect } from 'react'
 
 const API_BASE = "http://localhost:3001"
 
+    //WORKING ON EDITING PACKAGES
+    //WROTE EDIT PACKAGE FUNCITON
+    //NEED TO WORK WITH PACAKGEITEM FILE AND MAKE EDIT BUTTON OPEN NEW PAGE TO EDIT AND HAVE BUTTON ON THAT PAGE THAT GETS ALL INFO AND CALLS EDIT PACKAGE
+
 export function PackagePage() {
     const [packages, setPackages] = useState([])
     const [newPackage, setNewPackage] = useState("")
@@ -30,10 +34,17 @@ export function PackagePage() {
         setPackages(packages => packages.filter(p => p._id !== data._id))
     }
 
-    //click addPackage button to go to add package page
-    //WORKING ON EDITING PACKAGES
-    //WROTE EDIT PACKAGE FUNCITON
-    //NEED TO WORK WITH PACAKGEITEM FILE AND MAKE EDIT BUTTON OPEN NEW PAGE TO EDIT AND HAVE BUTTON ON THAT PAGE THAT GETS ALL INFO AND CALLS EDIT PACKAGE
+    const addPackage = async (newPackageInfo) => {
+        const data = await fetch(API_BASE + "/package/add" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({tba: newPackageInfo["tba"], weight: newPackageInfo["weight"], item: newPackageInfo["item"], location: newPackageInfo["location"], city: newPackageInfo["city"], driverID: newPackageInfo["driverID"]})
+        }).then(res => res.json())
+
+        setPackages([...packages])
+    }
 
     //pass in id you want updated and dict of names and values
     const editPackage = async (id, newPackageInfo) => {
