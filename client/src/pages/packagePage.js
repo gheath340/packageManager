@@ -67,7 +67,7 @@ export function PackagePage() {
             <div className="flex flex-row w-full justify-evenly items-start py-10">
                 <PackageList packages={packages} deletePackage={deletePackage} editPackage={editPackage}/>
             </div>
-            <button className="border rounded-md hover:scale-110 hover:duration-200 p-1"><Link to="/package/add">Add Package</Link></button>
+            <button className="border border-black rounded-md hover:scale-110 hover:duration-200 p-1"><Link to="/package/add">Add Package</Link></button>
         </div>
         </>
     )
