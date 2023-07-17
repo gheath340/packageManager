@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
+import { PackageAddButton } from "./packageAddButton"
 
-export function NewPackage(addPackage) {
+export function NewPackageForm(addPackage) {
     
     return (
         <>
@@ -19,7 +20,7 @@ export function NewPackage(addPackage) {
                 <input placeholder="Driver ID" name='tba' type="text" id="tbaInput" class="border border-black rounded"></input>
             </div>
             <div className="w-full flex flex-col items-center">
-                <button onClick={() => addPackage()} className="border border-black rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-1/2"><Link to="/packages">Add</Link></button>
+                <PackageAddButton addPackage={addPackage}/>
                 <button className="border border-black rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-1/2"><Link to="/packages">Cancel</Link></button>
             </div>
         </>
