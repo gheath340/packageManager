@@ -5,7 +5,6 @@ import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
 import { Home } from './pages/home';
 import { PackagePage } from './pages/packagePage';
 import { DriverPage } from './pages/driverPage';
-import { AddPackagePage } from './pages/addPackagePage'
 
 const API_BASE = "http://localhost:3001"
 
@@ -23,10 +22,6 @@ function App() {
     {
       path: "/drivers",
       element: <DriverPage/>
-    },
-    {
-      path: "/package/add",
-      element: <AddPackagePage/>
     },
   
   ])

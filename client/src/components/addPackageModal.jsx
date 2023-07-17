@@ -1,8 +1,9 @@
 import React from "react"
 import { useState, useEffect } from 'react'
+import { NewPackageForm } from "./newPackageForm"
 
 
-export function AddPackageModal(addPackage) {
+export function AddPackageModal({ addPackage }) {
     const [modal, setModal] = useState(false)
 
     const toggleModal = () => {
@@ -16,8 +17,7 @@ export function AddPackageModal(addPackage) {
                 <div className="">
                 <div className="overlay"></div>
                 <div className="modal-content">
-                    <h1>Hello Modal</h1>
-                    <button onClick={toggleModal}>Close</button>
+                    <NewPackageForm addPackage={addPackage} toggleModal={toggleModal}/>
                 </div>
             </div>
             )}

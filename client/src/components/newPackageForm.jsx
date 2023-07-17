@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { PackageAddButton } from "./packageAddButton"
 
-export function NewPackageForm(addPackage) {
+export function NewPackageForm({ addPackage, toggleModal }) {
     
     return (
         <>
@@ -21,7 +21,7 @@ export function NewPackageForm(addPackage) {
             </div>
             <div className="w-full flex flex-col items-center">
                 <PackageAddButton addPackage={addPackage}/>
-                <button className="border border-black rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-1/2"><Link to="/packages">Cancel</Link></button>
+                <button onClick={toggleModal} className="border border-black rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-1/2"><Link to="/packages">Cancel</Link></button>
             </div>
         </>
     )

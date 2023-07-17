@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
 import { Home } from './pages/home'
 import { PackagePage } from './pages/packagePage'
 import { DriverPage } from './pages/driverPage'
-import { AddPackagePage } from './pages/addPackagePage'
 import App from './App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
