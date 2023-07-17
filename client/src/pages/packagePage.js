@@ -4,6 +4,7 @@ import { PackageList } from "../components/packageList"
 import { PackageItem } from "../components/packageItem"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from 'react'
+import { AddPackageModal } from "../components/addPackageModal"
 
 const API_BASE = "http://localhost:3001"
 
@@ -67,7 +68,7 @@ export function PackagePage() {
             <div className="flex flex-row w-full justify-evenly items-start py-10">
                 <PackageList packages={packages} deletePackage={deletePackage} editPackage={editPackage}/>
             </div>
-            <button className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1"><Link to="/package/add">Add Package</Link></button>
+            <AddPackageModal addPackage={addPackage}/>
         </div>
         </>
     )
