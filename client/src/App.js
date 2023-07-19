@@ -1,34 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { Home } from './pages/home';
 import { PackagePage } from './pages/packagePage';
 import { DriverPage } from './pages/driverPage';
 
 const API_BASE = "http://localhost:3001"
 
-function App() {
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Home/>
-    },
-    {
-      path: "/packages",
-      element: <PackagePage/>
-    },
-    {
-      path: "/drivers",
-      element: <DriverPage/>
-    },
+export function App() {
   
-  ])
-
   return ( 
     <>
-    <RouterProvider router={router} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/packages" element={<PackagePage />} />
+        <Route path="/drivers" element={<DriverPage />} />
+      </Routes>
     </>
   )
 }
