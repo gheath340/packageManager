@@ -1,39 +1,16 @@
 import { Link } from "react-router-dom"
 import { PackageAddButton } from "./packageAddButton"
+import { useState } from "react"
 
 export function NewPackageForm({ addPackage, toggleModal }) {
-    
+    const [newPackage, setNewPackage] = useState({"tba": "", "item": "", "weight": "", "location": "", "city": "", "driverID": ""})
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target
+        setNewPackage({...newPackage, [name]: value,})
+    }
+
     return (
-            // <div className="flex flex-col justify-center gap-y-1">
-            //     <div className="flex gap-x-2">
-            //         <label>TBA</label>
-            //         <input placeholder="TBA" type="text"className="border border-gray-700 rounded"></input>
-            //     </div>
-            //     <div className="flex justify-evenly">
-            //         <label>Item</label>
-            //         <input placeholder="Item" type="text" className="border border-gray-700 rounded"></input>
-            //     </div>
-            //     <div className="flex justify-around">
-            //         <label>Weight</label>
-            //         <input placeholder="Weight" type="text" className="border border-gray-700 rounded"></input>
-            //     </div>
-            //     <div className="flex gap-x-2">
-            //         <label>Location</label>
-            //         <input placeholder="Location" type="text" className="border border-gray-700 rounded"></input>
-            //     </div>
-            //     <div className="flex justify-around">
-            //         <label>City</label>
-            //         <input placeholder="City" type="text" className="border border-gray-700 rounded"></input>
-            //     </div>
-            //     <div className="flex justify-around">
-            //         <label>Driver ID</label>
-            //         <input placeholder="Driver ID" type="text" className="border border-gray-700 rounded"></input>
-            //     </div>
-            //     <div className="w-full flex flex-col items-center">
-            //         <PackageAddButton addPackage={addPackage}/>
-            //         <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-1/2"><Link to="/packages">Cancel</Link></button>
-            //     </div>
-            // </div>
         <>
             <div className="flex justify-center items-center gap-x-2">
                 <div className="flex flex-col items-center">
@@ -45,17 +22,41 @@ export function NewPackageForm({ addPackage, toggleModal }) {
                     <label>Driver ID</label>
                 </div>
                 <div className="flex flex-col divide-y divide-gray-300">
-                    <input className="focus:outline-none" placeholder="TBA"></input>
-                    <input className="focus:outline-none" placeholder="Item"></input>
-                    <input className="focus:outline-none" placeholder="Weight"></input>
-                    <input className="focus:outline-none" placeholder="Location"></input>
-                    <input className="focus:outline-none" placeholder="City"></input>
-                    <input className="focus:outline-none" placeholder="Driver ID"></input>
+                    <input className="focus:outline-none" 
+                            placeholder="TBA" 
+                            value={newPackage.tba} 
+                            onChange={handleInputChange} 
+                            name="tba"></input>
+                    <input className="focus:outline-none" 
+                            placeholder="Item" 
+                            value={newPackage.item} 
+                            onChange={handleInputChange} 
+                            name="item"></input>
+                    <input className="focus:outline-none" 
+                            placeholder="Weight" 
+                            value={newPackage.weight} 
+                            onChange={handleInputChange} 
+                            name="weight"></input>
+                    <input className="focus:outline-none" 
+                            placeholder="Location" 
+                            value={newPackage.location} 
+                            onChange={handleInputChange} 
+                            name="location"></input>
+                    <input className="focus:outline-none" 
+                            placeholder="City" 
+                            value={newPackage.city} 
+                            onChange={handleInputChange} 
+                            name="city"></input>
+                    <input className="focus:outline-none" 
+                            placeholder="Driver ID" 
+                            value={newPackage.driverID} 
+                            onChange={handleInputChange} 
+                            name="driverID"></input>
                     <div></div>
                 </div>
             </div>
             <div className="flex w-1/2 items-center gap-x-2">
-                <PackageAddButton addPackage={addPackage}/>
+                <button onClick={() => { addPackage(newPackage); toggleModal() }} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Add</Link></button>
                 <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Cancel</Link></button>
             </div>
         </>
