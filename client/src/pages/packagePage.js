@@ -44,7 +44,8 @@ export function PackagePage() {
             body: JSON.stringify({tba: newPackageInfo["tba"], weight: newPackageInfo["weight"], item: newPackageInfo["item"], location: newPackageInfo["location"], city: newPackageInfo["city"], driverID: newPackageInfo["driverID"]})
         }).then(res => res.json())
 
-        setPackages([...packages])
+        setPackages([...packages, data])
+        setNewPackage("")
     }
 
     //pass in id you want updated and dict of names and values
