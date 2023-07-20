@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-export function NewPackageForm({ addPackage, toggleModal }) {
+export function EditPackageForm({ editPackage, toggleModal }) {
     const [newPackage, setNewPackage] = useState({"tba": "", "item": "", "weight": "", "location": "", "city": "", "driverID": ""})
 
     const handleInputChange = (e) => {
@@ -55,7 +55,7 @@ export function NewPackageForm({ addPackage, toggleModal }) {
                 </div>
             </div>
             <div className="flex w-1/2 items-center gap-x-2">
-                <button onClick={() => { addPackage(newPackage); toggleModal() }} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Add</Link></button>
+                <button onClick={() => { editPackage(newPackage); toggleModal() }} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Add</Link></button>
                 <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Cancel</Link></button>
             </div>
         </>

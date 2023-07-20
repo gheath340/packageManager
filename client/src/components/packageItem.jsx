@@ -1,3 +1,4 @@
+import { EditPackageModal } from "./editPackageModal";
 
 export function PackageItem({ id, tba, weight, item, location, city, driverID, deletePackage, editPackage }) {
     
@@ -18,7 +19,8 @@ export function PackageItem({ id, tba, weight, item, location, city, driverID, d
             </div>
             <div className="flex flex-col lg:flex-row items-center">
                 <button onClick={() => deletePackage(id)} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 w-full lg:w-2/3 lg:h-2/4 lg:mr-2">Delete</button>
-                <button onClick={() => editPackage(id)} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 w-full lg:w-2/3 mt-2 lg:mt-0 lg:h-2/4">Edit</button>
+                {/* <button onClick={() => editPackage(id)} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 w-full lg:w-2/3 mt-2 lg:mt-0 lg:h-2/4">Edit</button> */}
+                <EditPackageModal editPackage={editPackage}/>
             </div>
         </li>
 

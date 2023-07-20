@@ -1,16 +1,10 @@
 import React from "react"
 import { NavBar } from "../components/navBar"
 import { PackageList } from "../components/packageList"
-import { PackageItem } from "../components/packageItem"
-import { Link } from "react-router-dom"
 import { useState, useEffect } from 'react'
 import { AddPackageModal } from "../components/addPackageModal"
 
 const API_BASE = "http://localhost:3001"
-
-    //WORKING ON EDITING PACKAGES
-    //WROTE EDIT PACKAGE FUNCITON
-    //NEED TO WORK WITH PACAKGEITEM FILE AND MAKE EDIT BUTTON OPEN NEW PAGE TO EDIT AND HAVE BUTTON ON THAT PAGE THAT GETS ALL INFO AND CALLS EDIT PACKAGE
 
 export function PackagePage() {
     const [packages, setPackages] = useState([])
@@ -58,7 +52,8 @@ export function PackagePage() {
             body: JSON.stringify({tba: newPackageInfo["tba"], weight: newPackageInfo["weight"], item: newPackageInfo["item"], location: newPackageInfo["location"], city: newPackageInfo["city"], driverID: newPackageInfo["driverID"]})
         }).then(res => res.json())
 
-        setPackages([...packages])
+        setPackages(packages => packages.filter(p => p._id !== data._id))
+        setPackages([...packages, data])
     }
 
     return (

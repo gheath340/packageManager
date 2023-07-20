@@ -1,4 +1,3 @@
-import { PackagePage } from "../pages/packagePage"
 import { PackageItem } from "./packageItem"
 
 export function PackageList({ packages, deletePackage, editPackage }) {
