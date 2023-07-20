@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-export function EditPackageForm({ editPackage, toggleModal }) {
-    const [newPackage, setNewPackage] = useState({"tba": "", "item": "", "weight": "", "location": "", "city": "", "driverID": ""})
+export function EditPackageForm({ tba, weight, item, location, city, driverID, editPackage, toggleModal, packageID }) {
+    const [newPackage, setNewPackage] = useState({"tba": tba, "item": item, "weight": weight, "location": location, "city": city, "driverID": driverID})
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -55,7 +55,7 @@ export function EditPackageForm({ editPackage, toggleModal }) {
                 </div>
             </div>
             <div className="flex w-1/2 items-center gap-x-2">
-                <button onClick={() => { editPackage(newPackage); toggleModal() }} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Add</Link></button>
+                <button onClick={() => { editPackage(packageID, newPackage); toggleModal() }} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Submit</Link></button>
                 <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Cancel</Link></button>
             </div>
         </>

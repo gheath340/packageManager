@@ -19,7 +19,7 @@ export function PackageItem({ id, tba, weight, item, location, city, driverID, d
             </div>
             <div className="flex flex-col items-center">
                 <button onClick={() => deletePackage(id)} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 w-full">Delete</button>
-                <EditPackageModal editPackage={editPackage}/>
+                <EditPackageModal tba={tba} weight={weight} item={item} location={location} city={city} driverID={driverID} editPackage={editPackage} packageID={id}/>
             </div>
         </li>
 

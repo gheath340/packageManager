@@ -36,13 +36,13 @@ app.post('/package/add', (req, res) => {
 })
 
 app.put('/package/update/:id', async (req, res) => {
-    //recieve all info about the package being changed & update all info
-    const p = await Package.findById(req.body.id)
+    const p = await Package.findById(req.params.id)
 
     p.tba = req.body.tba
     p.weight = req.body.weight
     p.item = req.body.item
     p.location = req.body.location
+    p.city = req.body.city
     p.driverID = req.body.driverID
 
     p.save()
