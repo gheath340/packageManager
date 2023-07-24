@@ -1,6 +1,8 @@
 import React from "react"
 import { NavBar } from "../components/navBar"
 import { useState, useEffect } from 'react'
+import { DriverList } from "../components/driverList"
+import { AddDriverModal } from "../components/addDriverModal"
 
 const API_BASE = "http://localhost:3001"
 
@@ -34,7 +36,7 @@ export function DriverPage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({tba: newDriverInfo["tba"], weight: newDriverInfo["weight"], item: newDriverInfo["item"], location: newDriverInfo["location"], city: newDriverInfo["city"], driverID: newDriverInfo["driverID"]})
+            body: JSON.stringify({driverID: newDriverInfo["driverID"], packages: newDriverInfo["weight"], item: newDriverInfo["item"], location: newDriverInfo["location"], city: newDriverInfo["city"], driverID: newDriverInfo["driverID"]})
         }).then(res => res.json())
 
         setDrivers([...drivers, data])
@@ -63,8 +65,9 @@ export function DriverPage() {
             <NavBar />
             <div className="text-4xl mt-5 xl:mt-10">Drivers</div>
             <div className="flex flex-col lg:flex-row w-full h-full justify-evenly items-center">
-                
+                <DriverList drivers={drivers} deleteDriver={deleteDriver} editDriver={editDriver}/>
             </div>
+            <AddDriverModal addDriver={addDriver}/>
         </div>
         </>
     )
