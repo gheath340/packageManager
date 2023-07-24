@@ -51,10 +51,12 @@ export function PackagePage() {
             body: JSON.stringify({tba: newPackageInfo["tba"], weight: newPackageInfo["weight"], item: newPackageInfo["item"], location: newPackageInfo["location"], city: newPackageInfo["city"], driverID: newPackageInfo["driverID"]})
         }).then(res => res.json())
 
-        console.log(data)
-        setPackages([...packages, data])
+        let newPackages = packages
+        const index = newPackages.findIndex((el) => el._id == data._id)
+        newPackages[index] = data
+        setPackages(newPackages)
         setNewPackage("")
-        //window.location.reload(false)
+        getPackages()
     }
 
     return (
