@@ -68,9 +68,9 @@ app.get('/driver/:id', async (req, res) => {
     res.json(driver)
 })
 
-app.post('/driver/new', (req, res) => {
+app.post('/driver/add', (req, res) => {
     //change to match driver info
-    const driver = new Driver({ driverID: req.body.driverID, packages: req.body.packages, active: req.body.active, lastStop: req.body.lastStop, nextStop: req.body.nextStop })
+    const driver = new Driver({ driverID: req.body.driverID, packages: req.body.packages, active: req.body.active, lastStop: req.body.lastStop, nextStop: req.body.nextStop, city: req.body.city })
     driver.save()
 
     res.json(driver)

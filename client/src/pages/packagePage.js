@@ -52,7 +52,7 @@ export function PackagePage() {
         }).then(res => res.json())
 
         let newPackages = packages
-        const index = newPackages.findIndex((el) => el._id == data._id)
+        const index = newPackages.findIndex((el) => el._id === data._id)
         newPackages[index] = data
         setPackages(newPackages)
         setNewPackage("")

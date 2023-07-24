@@ -36,7 +36,7 @@ export function DriverPage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({driverID: newDriverInfo["driverID"], packages: newDriverInfo["weight"], item: newDriverInfo["item"], location: newDriverInfo["location"], city: newDriverInfo["city"], driverID: newDriverInfo["driverID"]})
+            body: JSON.stringify({driverID: newDriverInfo["driverID"], packages: newDriverInfo["packages"], active: newDriverInfo["active"], lastStop: newDriverInfo["lastStop"], nextStop: newDriverInfo["nextStop"], city: newDriverInfo["city"]})
         }).then(res => res.json())
 
         setDrivers([...drivers, data])
@@ -53,7 +53,7 @@ export function DriverPage() {
         }).then(res => res.json())
 
         let newDrivers = drivers
-        const index = newDrivers.findIndex((el) => el._id == data._id)
+        const index = newDrivers.findIndex((el) => el._id === data._id)
         newDrivers[index] = data
         setDrivers(newDrivers)
         setNewDriver("")

@@ -2,14 +2,12 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 
 export function NewDriverForm({ addDriver, toggleModal }) {
-    const [newDriver, setNewDriver] = useState({"tba": "", "item": "", "weight": "", "location": "", "city": "", "driverID": ""})
+    const [newDriver, setNewDriver] = useState({"driverID": "", "packages": [], "active": false, "lastStop": "N/A", "nextStop": "N/A", "city": ""})
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
         setNewDriver({...newDriver, [name]: value,})
     }
-
-    //need to autofill in other driver info when adding in
 
     return (
         <>
