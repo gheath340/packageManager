@@ -1,7 +1,62 @@
-import React from "react";
-import { NavBar } from "../components/navBar";
+import React from "react"
+import { NavBar } from "../components/navBar"
+import { useState, useEffect } from 'react'
+
+const API_BASE = "http://localhost:3001"
 
 export function DriverPage() {
+
+    const [drivers, setDrivers] = useState([])
+    const [newDriver, setNewDriver] = useState("")
+
+    useEffect(() => {
+    getDrivers()
+    }, [])
+
+    const getDrivers = () => {
+        fetch(API_BASE + "/drivers")
+        .then(res => res.json())
+        .then(data => setDrivers(data))
+        .catch(err => console.error("Error: ", err))
+      }
+
+    const deleteDriver = async id => {
+        const data = await fetch(API_BASE + "/driver/delete/" + id, {
+          method: "DELETE"})
+          .then(res => res.json())
+    
+        setDrivers(drivers => drivers.filter(d => d._id !== data._id))
+    }
+
+    const addDriver = async (newDriverInfo) => {
+        const data = await fetch(API_BASE + "/driver/add" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({tba: newDriverInfo["tba"], weight: newDriverInfo["weight"], item: newDriverInfo["item"], location: newDriverInfo["location"], city: newDriverInfo["city"], driverID: newDriverInfo["driverID"]})
+        }).then(res => res.json())
+
+        setDrivers([...drivers, data])
+        setNewDriver("")
+    }
+
+    const editDriver = async (id, newDriverInfo) => {
+        const data = await fetch(API_BASE + "/driver/update/" + id, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({tba: newDriverInfo["tba"], weight: newDriverInfo["weight"], item: newDriverInfo["item"], location: newDriverInfo["location"], city: newDriverInfo["city"], driverID: newDriverInfo["driverID"]})
+        }).then(res => res.json())
+
+        let newDrivers = drivers
+        const index = newDrivers.findIndex((el) => el._id == data._id)
+        newDrivers[index] = data
+        setDrivers(newDrivers)
+        setNewDriver("")
+        getDrivers()
+    }
     return (
         <>
         <div className="flex flex-col items-center h-full">
