@@ -10,10 +10,21 @@ export function DriverPage() {
 
     const [drivers, setDrivers] = useState([])
     const [newDriver, setNewDriver] = useState("")
+    const [openDriverItems, setOpenDriverItems] = useState([])
 
     useEffect(() => {
     getDrivers()
     }, [])
+
+    function toggleOpenDriverItems(driverID) {
+        setOpenDriverItems(openDriverItems => {
+            if (openDriverItems.includes(driverID)) {
+               return openDriverItems.filter(item => item !== driverID)
+            } else {
+                return [...openDriverItems, driverID]
+            }
+        })
+        }
 
     const getDrivers = () => {
         fetch(API_BASE + "/drivers")
@@ -59,6 +70,9 @@ export function DriverPage() {
         setNewDriver("")
         getDrivers()
     }
+    //ADD ARROW POINTING DOWN TO DRIVER ITEMS TO SIGNIFY THAT THEY CAN BE EXPANDED
+    //CLICK ON DRIVER ITEM TO EXPAND, SHOW THE DRIVER'S PACKAGES
+    //WHEN EXPANDED SWITCH ARROW TO POINT UP
     return (
         <>
         <div className="flex flex-col items-center h-full">
