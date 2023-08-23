@@ -70,9 +70,7 @@ export function DriverPage() {
         setNewDriver("")
         getDrivers()
     }
-    //ADD ARROW POINTING DOWN TO DRIVER ITEMS TO SIGNIFY THAT THEY CAN BE EXPANDED
-    //CLICK ON DRIVER ITEM TO EXPAND, SHOW THE DRIVER'S PACKAGES
-    //WHEN EXPANDED SWITCH ARROW TO POINT UP
+
     return (
         <>
         <div className="flex flex-col items-center h-full">

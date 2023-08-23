@@ -1,4 +1,5 @@
 import { EditDriverModal } from "./editDriverModal";
+import { DriverPackageList } from "./driverPackageList";
 import { Arrow } from "../components/arrow"
 
 export function DriverItem({ id, driverID, packages, active, lastStop, nextStop, city, deleteDriver, editDriver, toggleOpenDriverItems, openDriverItems }) {
@@ -30,7 +31,10 @@ export function DriverItem({ id, driverID, packages, active, lastStop, nextStop,
                 <Arrow className={`${openDriverItems.includes(driverID) ? "-rotate-180" : ""} 
                                     w-6 h-6 text-gray-500 self-center transition`} />
             </button>
+            <DriverPackageList />
         </div>
 
     )
 }
+//have the list of packages hidden unless driver item is open
+//if driver item is open show package list component
