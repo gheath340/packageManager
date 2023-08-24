@@ -47,7 +47,9 @@ export function DriverPage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({driverID: newDriverInfo["driverID"], packages: newDriverInfo["packages"], active: newDriverInfo["active"], lastStop: newDriverInfo["lastStop"], nextStop: newDriverInfo["nextStop"], city: newDriverInfo["city"]})
+            body: JSON.stringify({driverID: newDriverInfo["driverID"], packages: newDriverInfo["packages"], 
+            active: newDriverInfo["active"], lastStop: newDriverInfo["lastStop"], 
+            nextStop: newDriverInfo["nextStop"], city: newDriverInfo["city"]})
         }).then(res => res.json())
 
         setDrivers([...drivers, data])
@@ -60,7 +62,9 @@ export function DriverPage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({tba: newDriverInfo["tba"], weight: newDriverInfo["weight"], item: newDriverInfo["item"], location: newDriverInfo["location"], city: newDriverInfo["city"], driverID: newDriverInfo["driverID"]})
+            body: JSON.stringify({tba: newDriverInfo["tba"], weight: newDriverInfo["weight"], 
+            item: newDriverInfo["item"], location: newDriverInfo["location"], city: newDriverInfo["city"], 
+            driverID: newDriverInfo["driverID"]})
         }).then(res => res.json())
 
         let newDrivers = drivers
@@ -76,8 +80,9 @@ export function DriverPage() {
         <div className="flex flex-col items-center h-full">
             <NavBar />
             <div className="text-4xl mt-5 xl:mt-10">Drivers</div>
-            <div className="flex flex-col lg:flex-row w-full h-full justify-evenly items-center">
-                <DriverList drivers={drivers} deleteDriver={deleteDriver} editDriver={editDriver} toggleOpenDriverItems={toggleOpenDriverItems} openDriverItems={openDriverItems}/>
+            <div className="flex flex-col lg:flex-row w-full pt-36 pb-4 justify-evenly items-center">
+                <DriverList drivers={drivers} deleteDriver={deleteDriver} editDriver={editDriver} 
+                toggleOpenDriverItems={toggleOpenDriverItems} openDriverItems={openDriverItems}/>
             </div>
             <AddDriverModal addDriver={addDriver}/>
         </div>

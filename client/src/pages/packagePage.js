@@ -35,7 +35,9 @@ export function PackagePage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({tba: newPackageInfo["tba"], weight: newPackageInfo["weight"], item: newPackageInfo["item"], location: newPackageInfo["location"], city: newPackageInfo["city"], driverID: newPackageInfo["driverID"]})
+            body: JSON.stringify({tba: newPackageInfo["tba"], weight: newPackageInfo["weight"], 
+            item: newPackageInfo["item"], location: newPackageInfo["location"], city: newPackageInfo["city"], 
+            driverID: newPackageInfo["driverID"]})
         }).then(res => res.json())
 
         setPackages([...packages, data])
@@ -48,7 +50,9 @@ export function PackagePage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({tba: newPackageInfo["tba"], weight: newPackageInfo["weight"], item: newPackageInfo["item"], location: newPackageInfo["location"], city: newPackageInfo["city"], driverID: newPackageInfo["driverID"]})
+            body: JSON.stringify({tba: newPackageInfo["tba"], weight: newPackageInfo["weight"], 
+            item: newPackageInfo["item"], location: newPackageInfo["location"], city: newPackageInfo["city"], 
+            driverID: newPackageInfo["driverID"]})
         }).then(res => res.json())
 
         let newPackages = packages
