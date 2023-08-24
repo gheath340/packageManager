@@ -14,18 +14,18 @@ export function DriverItem({ id, driverID, packages, active, lastStop, nextStop,
     return (
         <div className="flex flex-col">
             <div key={id} className="flex py-5">
-                <div className="items-start">
+                <div className="items-start basis-1/3">
                     <p className="text-md font-semibold leading-6 text-gray-900">{driverID}</p>
                     <p className="mt-1 truncate text-sm leading-5 text-gray-500">{city}</p>
                     <p className="mt-1 truncate text-sm leading-5 text-gray-500">{active}</p>
                 </div>
-                <div className="items-end gap-x-1.5 justify-self-center">
+                <div className="flex flex-col items-center basis-1/3">
                     <p className="text-sm leading-5 text-gray-500">{lastStop}</p>
                     <p className="mt-2 text-sm leading-5 text-gray-500">{nextStop}</p>
                 </div>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center basis-1/3">
                     <button onClick={() => deleteDriver(id)} className="border border-gray-700 rounded-md 
-                                            hover:scale-110 hover:duration-200 p-1 w-full">Delete</button>
+                                            hover:scale-110 hover:duration-200 p-1">Delete</button>
                     <EditDriverModal driverID={driverID} packages={packages} active={active} lastStop={lastStop} 
                                                     nextStop={nextStop} city={city} editDriver={editDriver}/>
                 </div>

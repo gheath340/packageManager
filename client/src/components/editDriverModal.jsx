@@ -14,7 +14,7 @@ export function EditDriverModal({ tba, weight, item, location, city, driverID, e
     return (
         <>
             <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 
-                                                     hover:duration-200 p-1 w-full mt-2">Edit</button>
+                                                     hover:duration-200 px-3 py-1 mt-2">Edit</button>
             {modal && (
             <div className="absolute left-0 top-0 flex justify-center items-center w-full h-full bg-black/50">
                 <div className="flex flex-col justify-center items-center w-2/3 h-1/2 lg:h-3/5 lg:w-2/5 
