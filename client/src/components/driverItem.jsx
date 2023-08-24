@@ -3,7 +3,8 @@ import { DriverPackageList } from "./driverPackageList";
 import { Arrow } from "../components/arrow"
 import { useState } from 'react'
 
-export function DriverItem({ id, driverID, packages, active, lastStop, nextStop, city, deleteDriver, editDriver, toggleOpenDriverItems, openDriverItems }) {
+export function DriverItem({ id, driverID, packages, active, lastStop, nextStop, city, deleteDriver, 
+                             editDriver, toggleOpenDriverItems, openDriverItems }) {
     const [list, setList] = useState(false)
 
     const toggleList = () => {
@@ -29,14 +30,11 @@ export function DriverItem({ id, driverID, packages, active, lastStop, nextStop,
                     <button onClick={() => deleteDriver(id)} className="border border-gray-700 rounded-md 
                                             hover:scale-110 hover:duration-200 p-1 w-full">Delete</button>
                     <EditDriverModal driverID={driverID} packages={packages} active={active} lastStop={lastStop} 
-                                                        nextStop={nextStop} city={city} editDriver={editDriver}/>
+                                     nextStop={nextStop} city={city} editDriver={editDriver}/>
                 </div>
             </div>
-            <button onClick={() => { toggleOpenDriverItems(driverID); toggleList() }} className="self-center">
-                <Arrow className={`${openDriverItems.includes(driverID) ? "-rotate-180" : ""} 
-                                    w-6 h-6 text-gray-500 self-center transition`} />
-            </button>
-            <DriverPackageList packages={packages} list={list}/>
+            <DriverPackageList packages={packages} list={list} toggleOpenDriverItems={toggleOpenDriverItems}
+                               driverID={driverID} toggleList={toggleList} openDriverItems={openDriverItems}/>
         </div>
 
     )
