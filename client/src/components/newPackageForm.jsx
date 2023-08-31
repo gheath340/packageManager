@@ -2,7 +2,8 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 
 export function NewPackageForm({ addPackage, toggleModal }) {
-    const [newPackage, setNewPackage] = useState({"tba": "", "item": "", "weight": "", "location": "", "city": "", "driverID": ""})
+    const [newPackage, setNewPackage] = useState({"tba": "", "item": "", "weight": "", "location": "", 
+                                                  "city": ""})
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -18,7 +19,6 @@ export function NewPackageForm({ addPackage, toggleModal }) {
                     <label>Weight</label>
                     <label>Location</label>
                     <label>City</label>
-                    <label>Driver ID</label>
                 </div>
                 <div className="flex flex-col divide-y divide-gray-300">
                     <input className="focus:outline-none" 
@@ -46,17 +46,15 @@ export function NewPackageForm({ addPackage, toggleModal }) {
                             value={newPackage.city} 
                             onChange={handleInputChange} 
                             name="city"></input>
-                    <input className="focus:outline-none" 
-                            placeholder="Driver ID" 
-                            value={newPackage.driverID} 
-                            onChange={handleInputChange} 
-                            name="driverID"></input>
                     <div></div>
                 </div>
             </div>
             <div className="flex w-1/2 items-center gap-x-2">
-                <button onClick={() => { addPackage(newPackage); toggleModal() }} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Add</Link></button>
-                <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Cancel</Link></button>
+                <button onClick={() => { addPackage(newPackage); toggleModal() }} className="border 
+                  border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full">
+                                                           <Link to="/packages">Add</Link></button>
+                <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 
+                             hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Cancel</Link></button>
             </div>
         </>
     )

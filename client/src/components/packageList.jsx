@@ -3,7 +3,7 @@ import { PackageItem } from "./packageItem"
 export function PackageList({ packages, deletePackage, editPackage }) {
     
     return (
-        <ul role="list" className="divide-y divide-gray-300 flex flex-col w-2/3">
+        <ul className="divide-y divide-gray-300 flex flex-col w-2/3">
             {packages.length === 0 && "No Packages"}
             {packages.map(p => {
                 return (

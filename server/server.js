@@ -62,6 +62,12 @@ app.get('/drivers', async (req, res) => {
     res.json(drivers)
 })
 
+app.get('/driver/:city', async (req, res) => {
+    const driver = await Driver.find({ city: req.params.city })
+
+    res.json(driver)
+})
+
 app.get('/driver/:id', async (req, res) => {
     const driver = await Driver.findById(req.body.id)
 
@@ -69,7 +75,6 @@ app.get('/driver/:id', async (req, res) => {
 })
 
 app.post('/driver/add', (req, res) => {
-    //change to match driver info
     const driver = new Driver({ driverID: req.body.driverID, packages: req.body.packages, active: req.body.active, lastStop: req.body.lastStop, nextStop: req.body.nextStop, city: req.body.city })
     driver.save()
 
@@ -78,7 +83,6 @@ app.post('/driver/add', (req, res) => {
 
 app.put('/driver/update/:id', async (req, res) => {
     const driver = await Driver.findById(req.body.id)
-    //change to match driver schema
     driver.driverID = req.body.driverID
     driver.packages = req.body.packages
     driver.active = req.body.active

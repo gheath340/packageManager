@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-export function EditPackageForm({ tba, weight, item, location, city, driverID, editPackage, toggleModal, packageID }) {
-    const [newPackage, setNewPackage] = useState({"tba": tba, "item": item, "weight": weight, "location": location, "city": city, "driverID": driverID})
+export function EditPackageForm({ tba, weight, item, location, city, driverID, editPackage, toggleModal, 
+                                  packageID }) {
+    const [newPackage, setNewPackage] = useState({"tba": tba, "item": item, "weight": weight, 
+                                   "location": location, "city": city, "driverID": driverID})
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -18,7 +20,6 @@ export function EditPackageForm({ tba, weight, item, location, city, driverID, e
                     <label>Weight</label>
                     <label>Location</label>
                     <label>City</label>
-                    <label>Driver ID</label>
                 </div>
                 <div className="flex flex-col divide-y divide-gray-300">
                     <input className="focus:outline-none" 
@@ -46,17 +47,15 @@ export function EditPackageForm({ tba, weight, item, location, city, driverID, e
                             value={newPackage.city} 
                             onChange={handleInputChange} 
                             name="city"></input>
-                    <input className="focus:outline-none" 
-                            placeholder="Driver ID" 
-                            value={newPackage.driverID} 
-                            onChange={handleInputChange} 
-                            name="driverID"></input>
                     <div></div>
                 </div>
             </div>
             <div className="flex w-1/2 items-center gap-x-2">
-                <button onClick={() => { editPackage(packageID, newPackage); toggleModal() }} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Submit</Link></button>
-                <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Cancel</Link></button>
+                <button onClick={() => { editPackage(packageID, newPackage); toggleModal() }} 
+                className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 
+                                          w-full"><Link to="/packages">Submit</Link></button>
+                <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 
+                             hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Cancel</Link></button>
             </div>
         </>
     )
