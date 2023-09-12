@@ -27,6 +27,10 @@ app.get('/package/:id', async (req, res) => {
 
     res.json(p)
 })
+//LEFT OFF MAKING THE GET CITIES FUNCTION
+app.get('driver/cities', async (req, res) => {
+    const
+})
 
 app.post('/package/add', (req, res) => {
     const p = new Package({ tba: req.body.tba, weight: req.body.weight, item: req.body.item, location: req.body.location, city: req.body.city, driverID: req.body.driverID })

@@ -7,7 +7,6 @@ import { AddDriverModal } from "../components/addDriverModal"
 const API_BASE = "http://localhost:3001"
 
 export function DriverPage() {
-
     const [drivers, setDrivers] = useState([])
     const [newDriver, setNewDriver] = useState("")
     const [openDriverItems, setOpenDriverItems] = useState([])

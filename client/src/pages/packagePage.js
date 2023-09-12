@@ -77,6 +77,13 @@ export function PackagePage() {
         return data
       }
 
+    const getCities = async () => {
+        const data = await fetch(API_BASE + "/driver/cities")
+        .then(res => res.json())
+        .then(err => console.error("Error: ", err))
+        return data
+    }
+
     return (
         <>
         <div className="flex flex-col items-center h-full">
@@ -85,7 +92,7 @@ export function PackagePage() {
             <div className="flex flex-row w-full justify-evenly items-start py-10">
                 <PackageList packages={packages} deletePackage={deletePackage} editPackage={editPackage}/>
             </div>
-            <AddPackageModal addPackage={addPackage}/>
+            <AddPackageModal addPackage={addPackage} getCities={getCities}/>
         </div>
         </>
     )

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-export function NewPackageForm({ addPackage, toggleModal }) {
+export function NewPackageForm({ addPackage, toggleModal, getCities }) {
+    const cities = getCities()
     const [newPackage, setNewPackage] = useState({"tba": "", "item": "", "weight": "", "location": "", 
                                                   "city": ""})
 
@@ -43,11 +44,15 @@ export function NewPackageForm({ addPackage, toggleModal }) {
                             value={newPackage.location} 
                             onChange={handleInputChange} 
                             name="location"></input>
-                    <select name="dog-names" id="dog-names"> 
-                            <option value="rigatoni">Rigatoni</option> 
-                            <option value="dave">Dave</option> 
-                            <option value="pumpernickel">Pumpernickel</option> 
-                            <option value="reeses">Reeses</option> 
+                    <select className="focus:outline-none" 
+                            placeholder="City" 
+                            value={newPackage.city} 
+                            onChange={handleInputChange} 
+                            name="city"> 
+                            {cities 
+                                ? cities.map((city) => {
+                                    return <option>{city.name}</option>})
+                                : null} 
                     </select>
                     {/* <input className="focus:outline-none" 
                             placeholder="City" 
