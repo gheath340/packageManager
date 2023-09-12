@@ -6,7 +6,6 @@ import { AddPackageModal } from "../components/addPackageModal"
 
 const API_BASE = "http://localhost:3001"
 
-//just seeing if i can push from new computer
 export function PackagePage() {
     const [packages, setPackages] = useState([])
     const [newPackage, setNewPackage] = useState("")

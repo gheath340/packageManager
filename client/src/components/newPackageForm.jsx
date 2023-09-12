@@ -9,7 +9,9 @@ export function NewPackageForm({ addPackage, toggleModal }) {
         const { name, value } = e.target
         setNewPackage({...newPackage, [name]: value,})
     }
-
+//MAKING CITIES A DROP DOWN OF ALL CITIES THAT ARE ASSIGNED TO DRIVERS
+//need to take list of current cities in args
+//need to make an option tag for each city
     return (
         <>
             <div className="flex justify-center items-center gap-x-2">
@@ -41,11 +43,17 @@ export function NewPackageForm({ addPackage, toggleModal }) {
                             value={newPackage.location} 
                             onChange={handleInputChange} 
                             name="location"></input>
-                    <input className="focus:outline-none" 
+                    <select name="dog-names" id="dog-names"> 
+                            <option value="rigatoni">Rigatoni</option> 
+                            <option value="dave">Dave</option> 
+                            <option value="pumpernickel">Pumpernickel</option> 
+                            <option value="reeses">Reeses</option> 
+                    </select>
+                    {/* <input className="focus:outline-none" 
                             placeholder="City" 
                             value={newPackage.city} 
                             onChange={handleInputChange} 
-                            name="city"></input>
+                            name="city"></input> */}
                     <div></div>
                 </div>
             </div>
