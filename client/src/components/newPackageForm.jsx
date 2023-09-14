@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-export function NewPackageForm({ addPackage, toggleModal, getCities }) {
-    const cities = getCities()
+export function NewPackageForm({ addPackage, toggleModal, cities }) {
     const [newPackage, setNewPackage] = useState({"tba": "", "item": "", "weight": "", "location": "", 
                                                   "city": ""})
 
@@ -10,10 +9,7 @@ export function NewPackageForm({ addPackage, toggleModal, getCities }) {
         const { name, value } = e.target
         setNewPackage({...newPackage, [name]: value,})
     }
-    console.log(cities)
-//MAKING CITIES A DROP DOWN OF ALL CITIES THAT ARE ASSIGNED TO DRIVERS
-//need to take list of current cities in args
-//need to make an option tag for each city
+
     return (
         <>
             <div className="flex justify-center items-center gap-x-2">
@@ -52,14 +48,9 @@ export function NewPackageForm({ addPackage, toggleModal, getCities }) {
                             name="city"> 
                             {cities 
                                 ? cities.map((city) => {
-                                    return <option>{city}</option>})
+                                    return <option key={city}>{city}</option>})
                                 : null} 
                     </select>
-                    {/* <input className="focus:outline-none" 
-                            placeholder="City" 
-                            value={newPackage.city} 
-                            onChange={handleInputChange} 
-                            name="city"></input> */}
                     <div></div>
                 </div>
             </div>

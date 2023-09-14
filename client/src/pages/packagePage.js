@@ -10,9 +10,13 @@ export function PackagePage() {
     const [packages, setPackages] = useState([])
     const [newPackage, setNewPackage] = useState("")
     const [cities, setCities] = useState([])
-//use effect for cities, finding what even should trigger the function
+
     useEffect(() => {
     getPackages()
+    }, [])
+
+    useEffect(() => {
+        getCities()
     }, [])
 
     const getPackages = () => {
@@ -93,7 +97,7 @@ export function PackagePage() {
             <div className="flex flex-row w-full justify-evenly items-start py-10">
                 <PackageList packages={packages} deletePackage={deletePackage} editPackage={editPackage}/>
             </div>
-            <AddPackageModal addPackage={addPackage} getCities={getCities}/>
+            <AddPackageModal addPackage={addPackage} cities={cities}/>
         </div>
         </>
     )

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { NewPackageForm } from "./newPackageForm"
 
 
-export function AddPackageModal({ addPackage, getCities }) {
+export function AddPackageModal({ addPackage, cities }) {
     const [modal, setModal] = useState(false)
 
     const toggleModal = () => {
@@ -19,7 +19,7 @@ export function AddPackageModal({ addPackage, getCities }) {
                 <div className="flex flex-col justify-center items-center w-2/3 h-1/2 lg:h-3/5 lg:w-2/5
                               bg-white border border-gray-700 rounded-lg gap-y-5">
                     <h1 className="text-3xl">Add Package</h1>
-                    <NewPackageForm addPackage={addPackage} toggleModal={toggleModal} getCities={getCities}/>
+                    <NewPackageForm addPackage={addPackage} toggleModal={toggleModal} cities={cities}/>
                 </div>
             </div>
             )}
