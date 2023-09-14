@@ -27,9 +27,16 @@ app.get('/package/:id', async (req, res) => {
 
     res.json(p)
 })
-//LEFT OFF MAKING THE GET CITIES FUNCTION
-app.get('driver/cities', async (req, res) => {
-    const
+
+app.get('/driver/cities', async (req, res) => {
+    const d = await Driver.find()
+    //for each driver get the city property and add to list
+    const cities = []
+    d.forEach((driver) => {
+        cities.push(driver.city)
+    })
+
+    res.json(cities)
 })
 
 app.post('/package/add', (req, res) => {

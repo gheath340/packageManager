@@ -9,7 +9,8 @@ const API_BASE = "http://localhost:3001"
 export function PackagePage() {
     const [packages, setPackages] = useState([])
     const [newPackage, setNewPackage] = useState("")
-
+    const [cities, setCities] = useState([])
+//use effect for cities, finding what even should trigger the function
     useEffect(() => {
     getPackages()
     }, [])
@@ -77,11 +78,11 @@ export function PackagePage() {
         return data
       }
 
-    const getCities = async () => {
-        const data = await fetch(API_BASE + "/driver/cities")
+    const getCities = () => {
+        fetch(API_BASE + "/driver/cities")
         .then(res => res.json())
-        .then(err => console.error("Error: ", err))
-        return data
+        .then(data => setCities(data))
+        .catch(err => console.error("Error: ", err))
     }
 
     return (

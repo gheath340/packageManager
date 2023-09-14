@@ -10,6 +10,7 @@ export function NewPackageForm({ addPackage, toggleModal, getCities }) {
         const { name, value } = e.target
         setNewPackage({...newPackage, [name]: value,})
     }
+    console.log(cities)
 //MAKING CITIES A DROP DOWN OF ALL CITIES THAT ARE ASSIGNED TO DRIVERS
 //need to take list of current cities in args
 //need to make an option tag for each city
@@ -26,7 +27,7 @@ export function NewPackageForm({ addPackage, toggleModal, getCities }) {
                 <div className="flex flex-col divide-y divide-gray-300">
                     <input className="focus:outline-none" 
                             placeholder="TBA" 
-                            value={newPackage.tba} 
+                            value={newPackage.tba}  
                             onChange={handleInputChange} 
                             name="tba"></input>
                     <input className="focus:outline-none" 
@@ -51,7 +52,7 @@ export function NewPackageForm({ addPackage, toggleModal, getCities }) {
                             name="city"> 
                             {cities 
                                 ? cities.map((city) => {
-                                    return <option>{city.name}</option>})
+                                    return <option>{city}</option>})
                                 : null} 
                     </select>
                     {/* <input className="focus:outline-none" 
