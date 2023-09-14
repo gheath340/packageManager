@@ -1,7 +1,7 @@
 
 
 export function DriverPackageList({ packages, list }) {
-
+    console.log(packages)
     
     return (
         <ul className="divide-y divide-gray-300 flex flex-col w-2/3">
