@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-export function EditDriverForm({ tba, weight, item, location, city, driverID, editDriver, toggleModal }) {
-    const [newDriver, setNewDriver] = useState({"tba": tba, "item": item, "weight": weight, "location": location, "city": city, "driverID": driverID})
+export function EditDriverForm({ driverID, city, editDriver, toggleModal }) {
+    const [newDriver, setNewDriver] = useState({"city": city, "driverID": driverID})
 
     const handleInputChange = (e) => {
         const { name, value } = e.target

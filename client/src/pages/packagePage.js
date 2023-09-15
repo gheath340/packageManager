@@ -26,10 +26,16 @@ export function PackagePage() {
         .catch(err => console.error("Error: ", err))
       }
 
-    const deletePackage = async id => {
+    //also give driverID so package can be deleted of driver list
+    const deletePackage = async (id, dID) => {
         const data = await fetch(API_BASE + "/package/delete/" + id, {
-          method: "DELETE"})
-          .then(res => res.json())
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ driverID: dID })
+            })
+            .then(res => res.json())
     
         setPackages(packages => packages.filter(p => p._id !== data._id))
     }

@@ -61,9 +61,7 @@ export function DriverPage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({tba: newDriverInfo["tba"], weight: newDriverInfo["weight"], 
-            item: newDriverInfo["item"], location: newDriverInfo["location"], city: newDriverInfo["city"], 
-            driverID: newDriverInfo["driverID"]})
+            body: JSON.stringify({city: newDriverInfo["city"], driverID: newDriverInfo["driverID"]})
         }).then(res => res.json())
 
         let newDrivers = drivers

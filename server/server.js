@@ -69,13 +69,14 @@ app.put('/package/update/:id', async (req, res) => {
 
 app.delete('/package/delete/:id', async (req, res) => {
     const p = await Package.findByIdAndDelete(req.params.id)
+    const d = await Driver.find( { driverID: req.body.driverID })
 
     res.json(p)
 })
 
 app.get('/drivers', async (req, res) => {
     const drivers = await Driver.find()
-
+    
     res.json(drivers)
 })
 
@@ -101,14 +102,11 @@ app.post('/driver/add', (req, res) => {
 })
 
 app.put('/driver/update/:id', async (req, res) => {
-    const driver = await Driver.findById(req.body.id)
-    driver.driverID = req.body.driverID
-    driver.packages = req.body.packages
-    driver.active = req.body.active
-    driver.lastStop = req.body.lastStop
-    driver.nextStop = req.body.nextStop
+    const driver = await Driver.find({ driverID: req.params.id })
+    driver[0].driverID = req.body.driverID
+    driver[0].city = req.body.city
 
-    driver.save()
+    driver[0].save()
 
     res.json(driver)
 })
