@@ -41,11 +41,11 @@ export function NewPackageForm({ addPackage, toggleModal, cities }) {
                             value={newPackage.location} 
                             onChange={handleInputChange} 
                             name="location"></input>
-                    <select className="focus:outline-none" 
-                            placeholder="City" 
-                            value={newPackage.city} 
+                    <select className="focus:outline-none cursor-pointer" 
+                            value={newPackage.city}
                             onChange={handleInputChange} 
-                            name="city"> 
+                            name="city">
+                            <option></option>
                             {cities 
                                 ? cities.map((city) => {
                                     return <option key={city}>{city}</option>})

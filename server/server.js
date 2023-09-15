@@ -38,17 +38,16 @@ app.get('/driver/cities', async (req, res) => {
 
     res.json(cities)
 })
-//left off with "cant read properties of undefined for driver.packages.push"
+
 app.post('/package/add', async (req, res) => {
     const p = new Package({ tba: req.body.tba, weight: req.body.weight, item: req.body.item, 
               location: req.body.location, city: req.body.city, driverID: req.body.driverID })
 
     const driver = await Driver.find({ driverID: req.body.driverID })
-    driver.packages.push(p)
+    driver[0].packages.push(p)
 
+    //driver.save()
     p.save()
-    driver.save()
-    console.log(driver.packages)
 
     res.json(p)
 })
@@ -93,7 +92,9 @@ app.get('/driver/:id', async (req, res) => {
 })
 
 app.post('/driver/add', (req, res) => {
-    const driver = new Driver({ driverID: req.body.driverID, packages: req.body.packages, active: req.body.active, lastStop: req.body.lastStop, nextStop: req.body.nextStop, city: req.body.city })
+    const driver = new Driver({ driverID: req.body.driverID, packages: req.body.packages, 
+        active: req.body.active, lastStop: req.body.lastStop, nextStop: req.body.nextStop, 
+        city: req.body.city })
     driver.save()
 
     res.json(driver)
