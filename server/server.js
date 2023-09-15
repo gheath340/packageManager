@@ -71,6 +71,9 @@ app.delete('/package/delete/:id', async (req, res) => {
     const p = await Package.findByIdAndDelete(req.params.id)
     const d = await Driver.find( { driverID: req.body.driverID })
 
+    d[0].packages = d[0].packages.filter(package => package._id.toString() !== req.params.id)
+
+    d[0].save()
     res.json(p)
 })
 

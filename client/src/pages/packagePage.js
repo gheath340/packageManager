@@ -40,7 +40,6 @@ export function PackagePage() {
         setPackages(packages => packages.filter(p => p._id !== data._id))
     }
 
-    //and when adding a package make sure associated drivers package list is updated
     const addPackage = async (newPackageInfo) => {
         const driverID = await getDriverID(newPackageInfo["city"])
         const data = await fetch(API_BASE + "/package/add" , {
@@ -56,7 +55,7 @@ export function PackagePage() {
         setPackages([...packages, data])
         setNewPackage("")
     }
-    //if package city is edited driverID needs to update too
+    
     const editPackage = async (id, newPackageInfo) => {
         const data = await fetch(API_BASE + "/package/update/" + id, {
             method: "PUT",
