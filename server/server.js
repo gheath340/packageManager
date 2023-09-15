@@ -46,7 +46,7 @@ app.post('/package/add', async (req, res) => {
     const driver = await Driver.find({ driverID: req.body.driverID })
     driver[0].packages.push(p)
 
-    //driver.save()
+    driver[0].save()
     p.save()
 
     res.json(p)
