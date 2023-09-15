@@ -55,7 +55,7 @@ export function PackagePage() {
         setPackages([...packages, data])
         setNewPackage("")
     }
-    
+
     const editPackage = async (id, newPackageInfo) => {
         const data = await fetch(API_BASE + "/package/update/" + id, {
             method: "PUT",
@@ -100,7 +100,7 @@ export function PackagePage() {
             <NavBar />
             <div className="text-4xl mt-5 mb-5 xl:mt-10 xl:mb-10">Packages</div>
             <div className="flex flex-row w-full justify-evenly items-start py-10">
-                <PackageList packages={packages} deletePackage={deletePackage} editPackage={editPackage}/>
+                <PackageList packages={packages} deletePackage={deletePackage} editPackage={editPackage} cities={cities}/>
             </div>
             <AddPackageModal addPackage={addPackage} cities={cities}/>
         </div>

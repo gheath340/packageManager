@@ -1,6 +1,6 @@
 import { EditPackageModal } from "./editPackageModal";
 
-export function PackageItem({ id, tba, weight, item, location, city, driverID, deletePackage, editPackage }) {
+export function PackageItem({ id, tba, weight, item, location, city, driverID, deletePackage, editPackage, cities }) {
     
     return (
         <li key={id} className="flex justify-between gap-x-6 py-5">
@@ -19,7 +19,8 @@ export function PackageItem({ id, tba, weight, item, location, city, driverID, d
             </div>
             <div className="flex flex-col items-center">
                 <button onClick={() => deletePackage(id, driverID)} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 w-full">Delete</button>
-                <EditPackageModal tba={tba} weight={weight} item={item} location={location} city={city} driverID={driverID} editPackage={editPackage} packageID={id}/>
+                <EditPackageModal tba={tba} weight={weight} item={item} location={location} city={city} 
+                driverID={driverID} editPackage={editPackage} packageID={id} cities={cities}/>
             </div>
         </li>
 

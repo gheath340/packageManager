@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 
 export function EditPackageForm({ tba, weight, item, location, city, driverID, editPackage, toggleModal, 
-                                  packageID }) {
+                                  packageID, cities }) {
     const [newPackage, setNewPackage] = useState({"tba": tba, "item": item, "weight": weight, 
                                    "location": location, "city": city, "driverID": driverID})
 
@@ -42,11 +42,15 @@ export function EditPackageForm({ tba, weight, item, location, city, driverID, e
                             value={newPackage.location} 
                             onChange={handleInputChange} 
                             name="location"></input>
-                    <input className="focus:outline-none" 
-                            placeholder="City" 
-                            value={newPackage.city} 
+                    <select className="focus:outline-none cursor-pointer" 
+                            value={newPackage.city}
                             onChange={handleInputChange} 
-                            name="city"></input>
+                            name="city">
+                            {cities 
+                                ? cities.map((city) => {
+                                    return <option key={city}>{city}</option>})
+                                : null} 
+                    </select>
                     <div></div>
                 </div>
             </div>
