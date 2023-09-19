@@ -6,6 +6,7 @@ import { NewPackageForm } from "./newPackageForm"
 export function AddPackageModal({ addPackage, cities }) {
     const [modal, setModal] = useState(false)
 
+    //change if modal is opened or closed
     const toggleModal = () => {
         setModal(!modal)
     }

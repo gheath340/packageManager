@@ -6,6 +6,7 @@ import { EditDriverForm } from "./editDriverForm"
 export function EditDriverModal({ city, driverID, editDriver }) {
     const [modal, setModal] = useState(false)
 
+    //sets modal opened or closed
     const toggleModal = () => {
         setModal(!modal)
     }

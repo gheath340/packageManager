@@ -11,11 +11,13 @@ export function DriverPage() {
     const [newDriver, setNewDriver] = useState("")
     const [openDriverItems, setOpenDriverItems] = useState([])
 
+    //get all drivers on page load
     useEffect(() => {
     getDrivers()
     }, [])
 
-    function toggleOpenDriverItems(driverID) {
+    //change which drivers are open for showing package lists
+    const toggleOpenDriverItems = (driverID) => {
         setOpenDriverItems(openDriverItems => {
             if (openDriverItems.includes(driverID)) {
                return openDriverItems.filter(item => item !== driverID)

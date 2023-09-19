@@ -6,6 +6,7 @@ import { EditPackageForm } from "./editPackageForm"
 export function EditPackageModal({ tba, weight, item, location, city, driverID, editPackage, packageID, cities }) {
     const [modal, setModal] = useState(false)
 
+    //changes if modal is opened or closed
     const toggleModal = () => {
         setModal(!modal)
     }

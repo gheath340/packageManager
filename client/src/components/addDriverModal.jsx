@@ -6,6 +6,7 @@ import { NewDriverForm } from "./newDriverForm"
 export function AddDriverModal({ addDriver }) {
     const [modal, setModal] = useState(false)
 
+    //change if modal is open or closed
     const toggleModal = () => {
         setModal(!modal)
     }

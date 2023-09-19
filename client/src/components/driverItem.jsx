@@ -7,6 +7,7 @@ export function DriverItem({ id, driverID, packages, active, lastStop, nextStop,
                              editDriver, toggleOpenDriverItems, openDriverItems }) {
     const [list, setList] = useState(false)
 
+    //changes if package list is showing or not
     const toggleList = () => {
         setList(!list)
     }

@@ -5,6 +5,7 @@ export function NewPackageForm({ addPackage, toggleModal, cities }) {
     const [newPackage, setNewPackage] = useState({"tba": "", "item": "", "weight": "", "location": "", 
                                                   "city": ""})
 
+    //update package info everytime a field is changed
     const handleInputChange = (e) => {
         const { name, value } = e.target
         setNewPackage({...newPackage, [name]: value,})

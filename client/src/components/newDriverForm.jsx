@@ -4,6 +4,7 @@ import { useState } from "react"
 export function NewDriverForm({ addDriver, toggleModal }) {
     const [newDriver, setNewDriver] = useState({"driverID": "", "packages": [], "active": false, "lastStop": "N/A", "nextStop": "N/A", "city": ""})
 
+    //updates driver evertime a field is changed
     const handleInputChange = (e) => {
         const { name, value } = e.target
         setNewDriver({...newDriver, [name]: value,})

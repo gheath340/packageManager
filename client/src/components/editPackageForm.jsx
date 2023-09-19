@@ -5,7 +5,8 @@ export function EditPackageForm({ tba, weight, item, location, city, driverID, e
                                   packageID, cities }) {
     const [newPackage, setNewPackage] = useState({"tba": tba, "item": item, "weight": weight, 
                                    "location": location, "city": city, "driverID": driverID})
-
+    
+    //update package info everytime a field is changed
     const handleInputChange = (e) => {
         const { name, value } = e.target
         setNewPackage({...newPackage, [name]: value,})

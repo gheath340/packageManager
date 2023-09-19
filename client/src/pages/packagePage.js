@@ -11,10 +11,12 @@ export function PackagePage() {
     const [newPackage, setNewPackage] = useState("")
     const [cities, setCities] = useState([])
 
+    //get all packages on page load
     useEffect(() => {
     getPackages()
     }, [])
 
+    //get all cities on page load
     useEffect(() => {
         getCities()
     }, [])
@@ -26,7 +28,6 @@ export function PackagePage() {
         .catch(err => console.error("Error: ", err))
       }
 
-    //also give driverID so package can be deleted of driver list
     const deletePackage = async (id, dID) => {
         const data = await fetch(API_BASE + "/package/delete/" + id, {
             method: "DELETE",
