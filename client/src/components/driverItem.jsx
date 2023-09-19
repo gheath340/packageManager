@@ -15,16 +15,16 @@ export function DriverItem({ id, driverID, packages, active, lastStop, nextStop,
     return (
         <div className="flex flex-col">
             <div key={id} className="flex py-5">
-                <div className="items-start basis-1/3">
+                <div className="flex-auto items-start">
                     <p className="text-md font-semibold leading-6 text-gray-900">Driver ID: {driverID}</p>
                     <p className="mt-1 truncate text-sm leading-5 text-gray-500">City: {city}</p>
                     <p className="mt-1 truncate text-sm leading-5 text-gray-500">Active: {active}</p>
                 </div>
-                <div className="flex flex-col items-center basis-1/3">
+                <div className="flex-auto">
                     <p className="text-sm leading-5 text-gray-500">Last Stop: {lastStop}</p>
                     <p className="mt-2 text-sm leading-5 text-gray-500">Next Stop: {nextStop}</p>
                 </div>
-                <div className="flex flex-col items-center basis-1/3">
+                <div className="flex flex-col">
                     <button onClick={() => deleteDriver(id)} className="border border-gray-700 rounded-md 
                                             hover:scale-110 hover:duration-200 p-1">Delete</button>
                     <EditDriverModal driverID={driverID} city={city} editDriver={editDriver}/>
@@ -37,7 +37,4 @@ export function DriverItem({ id, driverID, packages, active, lastStop, nextStop,
             <DriverPackageList packages={packages} list={list}/>
         </div>
 
-    )
-}
-//have the list of packages hidden unless driver item is open
-//if driver item is open show package list component
+)}

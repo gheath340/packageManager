@@ -8,7 +8,6 @@ const API_BASE = "http://localhost:3001"
 
 export function PackagePage() {
     const [packages, setPackages] = useState([])
-    const [newPackage, setNewPackage] = useState("")
     const [cities, setCities] = useState([])
 
     //get all packages on page load
@@ -54,7 +53,6 @@ export function PackagePage() {
         }).then(res => res.json())
 
         setPackages([...packages, data])
-        setNewPackage("")
     }
 
     const editPackage = async (id, newPackageInfo) => {
@@ -73,7 +71,6 @@ export function PackagePage() {
         const index = newPackages.findIndex((el) => el._id === data._id)
         newPackages[index] = data
         setPackages(newPackages)
-        setNewPackage("")
         getPackages()
     }
 

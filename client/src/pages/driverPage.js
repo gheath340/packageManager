@@ -8,7 +8,6 @@ const API_BASE = "http://localhost:3001"
 
 export function DriverPage() {
     const [drivers, setDrivers] = useState([])
-    const [newDriver, setNewDriver] = useState("")
     const [openDriverItems, setOpenDriverItems] = useState([])
 
     //get all drivers on page load
@@ -54,7 +53,6 @@ export function DriverPage() {
         }).then(res => res.json())
 
         setDrivers([...drivers, data])
-        setNewDriver("")
     }
 
     const editDriver = async (id, newDriverInfo) => {
@@ -70,7 +68,6 @@ export function DriverPage() {
         const index = newDrivers.findIndex((el) => el._id === data._id)
         newDrivers[index] = data
         setDrivers(newDrivers)
-        setNewDriver("")
         getDrivers()
     }
 
