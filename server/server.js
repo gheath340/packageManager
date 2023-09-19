@@ -51,26 +51,49 @@ app.post('/package/add', async (req, res) => {
 
     res.json(p)
 })
-//get driver based on driverID from package
-//find correct package in driver list using package id and plug in new info
+//if package city is updated update driver id and put it into correct driver list
 app.put('/package/update/:id', async (req, res) => {
     const p = await Package.findById(req.params.id)
     const d = await Driver.find( { driverID: req.body.driverID })
-    const index = d[0].packages.findIndex(package => 
-                    package._id.toString() === p._id.toString())
+
+    if (p.city !== req.params.city) {
+        updatePackageCity(p, d, req)
+    }
 
     p.tba = req.body.tba
     p.weight = req.body.weight
     p.item = req.body.item
     p.location = req.body.location
     p.city = req.body.city
-    p.driverID = req.body.driverID
-    d[0].packages[index] = p
+    p.driverID = req.body.newDriverID
+
+    updateDriverPackages(p, d)
 
     d[0].save()
     p.save()
     res.json(p)
 })
+
+const updatePackageCity = async (p, driver1, req) => {
+    //update city and remove package from current driver
+    driver1[0].packages = driver1[0].packages.filter(package => 
+                    package._id.toString() !== req.params.id)
+    //driver1[0].save()
+
+    //update driverId and add package to new driver list
+    const driver2 = await Driver.find({ driverID: req.body.newDriverID })
+    driver2[0].packages.push(p)
+    driver2[0].save()
+    p.save()
+}
+
+const updateDriverPackages = async (p, d) => {
+    const index = d[0].packages.findIndex(package => 
+        package._id.toString() === p._id.toString())
+    
+        d[0].packages[index] = p
+        //d[0].save()
+}
 
 app.delete('/package/delete/:id', async (req, res) => {
     const p = await Package.findByIdAndDelete(req.params.id)

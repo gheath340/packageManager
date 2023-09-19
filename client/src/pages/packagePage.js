@@ -57,6 +57,7 @@ export function PackagePage() {
     }
 
     const editPackage = async (id, newPackageInfo) => {
+        const newDriverID = await getDriverID(newPackageInfo["city"])
         const data = await fetch(API_BASE + "/package/update/" + id, {
             method: "PUT",
             headers: {
@@ -64,7 +65,7 @@ export function PackagePage() {
             },
             body: JSON.stringify({tba: newPackageInfo["tba"], weight: newPackageInfo["weight"], 
             item: newPackageInfo["item"], location: newPackageInfo["location"], city: newPackageInfo["city"], 
-            driverID: newPackageInfo["driverID"]})
+            driverID: newPackageInfo["driverID"], newDriverID: newDriverID})
         }).then(res => res.json())
 
         let newPackages = packages
