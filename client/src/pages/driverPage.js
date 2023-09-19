@@ -41,7 +41,7 @@ export function DriverPage() {
         if (data === false){
             setDrivers(drivers => drivers.filter(d => d._id !== id))
         }else{
-            //want an error message here
+            alert("Can only delete drivers with no packages assigned.")
         }
     }
 
