@@ -37,8 +37,12 @@ export function DriverPage() {
         const data = await fetch(API_BASE + "/driver/delete/" + id, {
           method: "DELETE"})
           .then(res => res.json())
-    
-        setDrivers(drivers => drivers.filter(d => d._id !== data._id))
+        
+        if (data === false){
+            setDrivers(drivers => drivers.filter(d => d._id !== id))
+        }else{
+            //want an error message here
+        }
     }
 
     const addDriver = async (newDriverInfo) => {

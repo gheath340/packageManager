@@ -152,9 +152,17 @@ app.put('/driver/update/:id', async (req, res) => {
 
 //delete driver based on id
 app.delete('/driver/delete/:id', async (req, res) => {
-    const result = await Driver.findByIdAndDelete(req.params.id)
+    const driver = await Driver.findById(req.params.id)
+    let output
+    
+    if (Array.isArray(driver.packages) && driver.packages.length) {
+        output = true
+    }else{
+        output = false
+        const driver = await Driver.findByIdAndDelete(req.params.id)
+    }
 
-    res.json(result)
+    res.json(output)
 })
 
 
