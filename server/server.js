@@ -51,9 +51,13 @@ app.post('/package/add', async (req, res) => {
 
     res.json(p)
 })
-
+//get driver based on driverID from package
+//find correct package in driver list using package id and plug in new info
 app.put('/package/update/:id', async (req, res) => {
     const p = await Package.findById(req.params.id)
+    const d = await Driver.find( { driverID: req.body.driverID })
+    const index = d[0].packages.findIndex(package => 
+                    package._id.toString() === p._id.toString())
 
     p.tba = req.body.tba
     p.weight = req.body.weight
@@ -61,9 +65,10 @@ app.put('/package/update/:id', async (req, res) => {
     p.location = req.body.location
     p.city = req.body.city
     p.driverID = req.body.driverID
+    d[0].packages[index] = p
 
+    d[0].save()
     p.save()
-
     res.json(p)
 })
 
