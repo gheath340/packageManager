@@ -87,7 +87,6 @@ const updatePackageCity = async (p, driver1, req) => {
     const driver2 = await Driver.find({ driverID: req.body.newDriverID })
     driver2[0].packages.push(p)
     driver2[0].save()
-    p.save()
 }
 
 //update specific package in drivers list
