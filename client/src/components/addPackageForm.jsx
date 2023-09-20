@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 
 export function NewPackageForm({ addPackage, toggleModal, cities }) {
-    const [newPackage, setNewPackage] = useState({"tba": "", "item": "", "weight": "", "location": "", 
+    const [newPackage, setNewPackage] = useState({"tba": "", "item": "", "weight": "", "location": "FC", 
                                                   "city": ""})
 
     //update package info everytime a field is changed
@@ -18,7 +18,7 @@ export function NewPackageForm({ addPackage, toggleModal, cities }) {
                     <label>TBA</label>
                     <label>Item</label>
                     <label>Weight</label>
-                    <label>Location</label>
+                    {/* <label>Location</label> */}
                     <label>City</label>
                 </div>
                 <div className="flex flex-col divide-y divide-gray-300">
@@ -37,11 +37,6 @@ export function NewPackageForm({ addPackage, toggleModal, cities }) {
                             value={newPackage.weight} 
                             onChange={handleInputChange} 
                             name="weight"></input>
-                    <input className="focus:outline-none" 
-                            placeholder="Location" 
-                            value={newPackage.location} 
-                            onChange={handleInputChange} 
-                            name="location"></input>
                     <select className="focus:outline-none cursor-pointer" 
                             value={newPackage.city}
                             onChange={handleInputChange} 

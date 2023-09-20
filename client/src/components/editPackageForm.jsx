@@ -38,11 +38,15 @@ export function EditPackageForm({ tba, weight, item, location, city, driverID, e
                             value={newPackage.weight} 
                             onChange={handleInputChange} 
                             name="weight"></input>
-                    <input className="focus:outline-none" 
-                            placeholder="Location" 
-                            value={newPackage.location} 
+                    <select className="focus:outline-none cursor-pointer" 
+                            value={newPackage.location}
                             onChange={handleInputChange} 
-                            name="location"></input>
+                            name="location">
+                            <option></option>
+                            <option>FC</option>
+                            <option>On Truck</option>
+                            <option>Delivered</option>
+                    </select>
                     <select className="focus:outline-none cursor-pointer" 
                             value={newPackage.city}
                             onChange={handleInputChange} 

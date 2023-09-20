@@ -1,6 +1,6 @@
 import React from "react"
 import { useState } from 'react'
-import { NewPackageForm } from "./newPackageForm"
+import { NewPackageForm } from "./addPackageForm"
 
 
 export function AddPackageModal({ addPackage, cities }) {
