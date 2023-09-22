@@ -40,7 +40,7 @@ export function PackagePage() {
         setPackages(packages => packages.filter(p => p._id !== data._id))
     }
 
-    const checkNewPackageFields = (newPackageInfo) => {
+    const checkNewPackageFields = (newPackageInfo, id, type) => {
         let failed = false
        if (newPackageInfo["tba"] === "" || newPackageInfo["item"] === "" || newPackageInfo["weight"] === "" || newPackageInfo["city"] === "") {
             alert("Please fill in all fields.")
@@ -52,8 +52,10 @@ export function PackagePage() {
                     failed = true
                 }
             })
-       }if (!failed){
+       }if (!failed && type === "add"){
             addPackage(newPackageInfo)
+       }else if (!failed && type === "edit") {
+            editPackage(id, newPackageInfo)
        }
     }
 
@@ -116,7 +118,7 @@ export function PackagePage() {
             <NavBar />
             <div className="text-4xl mt-5 mb-5 xl:mt-10 xl:mb-10">Packages</div>
             <div className="flex flex-row w-full justify-evenly items-start py-10">
-                <PackageList packages={packages} deletePackage={deletePackage} editPackage={editPackage} cities={cities}/>
+                <PackageList packages={packages} deletePackage={deletePackage} editPackage={checkNewPackageFields} cities={cities}/>
             </div>
             <AddPackageModal addPackage={checkNewPackageFields} cities={cities}/>
         </div>

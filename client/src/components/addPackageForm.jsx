@@ -51,7 +51,7 @@ export function NewPackageForm({ addPackage, toggleModal, cities }) {
                 </div>
             </div>
             <div className="flex w-1/2 items-center gap-x-2">
-                <button onClick={() => { addPackage(newPackage); toggleModal() }} className="border 
+                <button onClick={() => { addPackage(newPackage, null, "add"); toggleModal() }} className="border 
                   border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full">
                                                            <Link to="/packages">Add</Link></button>
                 <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 
