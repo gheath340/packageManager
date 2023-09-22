@@ -25,7 +25,7 @@ export function PackagePage() {
         .then(res => res.json())
         .then(data => setPackages(data))
         .catch(err => console.error("Error: ", err))
-      }
+    }
 
     const deletePackage = async (id, dID) => {
         const data = await fetch(API_BASE + "/package/delete/" + id, {
@@ -38,6 +38,23 @@ export function PackagePage() {
             .then(res => res.json())
     
         setPackages(packages => packages.filter(p => p._id !== data._id))
+    }
+
+    const checkNewPackageFields = (newPackageInfo) => {
+        let failed = false
+       if (newPackageInfo["tba"] === "" || newPackageInfo["item"] === "" || newPackageInfo["weight"] === "" || newPackageInfo["city"] === "") {
+            alert("Please fill in all fields.")
+            failed = true
+       }else{
+            packages.forEach(p => {
+                if (newPackageInfo["tba"] === p.tba){
+                    alert("TBA has already been assigned.")
+                    failed = true
+                }
+            })
+       }if (!failed){
+            addPackage(newPackageInfo)
+       }
     }
 
     const addPackage = async (newPackageInfo) => {
@@ -55,7 +72,7 @@ export function PackagePage() {
         setPackages([...packages, data])
     }
 
-    const editPackage = async (id, newPackageInfo) => {
+        const editPackage = async (id, newPackageInfo) => {
         const newDriverID = await getDriverID(newPackageInfo["city"])
         const data = await fetch(API_BASE + "/package/update/" + id, {
             method: "PUT",
@@ -101,7 +118,7 @@ export function PackagePage() {
             <div className="flex flex-row w-full justify-evenly items-start py-10">
                 <PackageList packages={packages} deletePackage={deletePackage} editPackage={editPackage} cities={cities}/>
             </div>
-            <AddPackageModal addPackage={addPackage} cities={cities}/>
+            <AddPackageModal addPackage={checkNewPackageFields} cities={cities}/>
         </div>
         </>
     )

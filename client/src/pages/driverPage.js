@@ -45,6 +45,24 @@ export function DriverPage() {
         }
     }
 
+    const checkNewDriverFields = (newDriverInfo) => {
+        let failed = false
+       if (newDriverInfo["city"] === "" || newDriverInfo["driverID"] === "") {
+            alert("Please fill in all fields.")
+            failed = true
+       }else{
+            //make sure driver id or city dont match any other drivers
+            drivers.forEach(driver => {
+                if (driver.city === newDriverInfo["city"] || driver.driverID === newDriverInfo["driverID"]){
+                    alert("Driver ID or city has already been assigned.")
+                    failed = true
+                }
+            })
+       }if (!failed){
+            addDriver(newDriverInfo)
+       }
+    }
+
     const addDriver = async (newDriverInfo) => {
         const data = await fetch(API_BASE + "/driver/add" , {
             method: "POST",
@@ -84,7 +102,7 @@ export function DriverPage() {
                 <DriverList drivers={drivers} deleteDriver={deleteDriver} editDriver={editDriver} 
                 toggleOpenDriverItems={toggleOpenDriverItems} openDriverItems={openDriverItems}/>
             </div>
-            <AddDriverModal addDriver={addDriver}/>
+            <AddDriverModal addDriver={checkNewDriverFields}/>
         </div>
         </>
     )
