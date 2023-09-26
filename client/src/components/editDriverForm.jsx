@@ -1,16 +1,20 @@
 import { Link } from "react-router-dom"
-import { useState } from "react"
-//import { useKeyPress } from "@uidotdev/usehooks"
+import { useEffect, useState } from "react"
 
 export function EditDriverForm({ id, city, driverID, editDriver, toggleModal }) {
     const [newDriver, setNewDriver] = useState({"id": id, "city": city, "driverID": driverID})
+
+    const handleSubmitPress = (event) => {
+        if (event.key === "Enter") {
+            onSubmit()
+        }
+    }
 
     const onSubmit = () => {
         toggleModal()
         editDriver(newDriver, "edit")
     }
 
-    //useKeyPress("Enter", )
     //updates driver info whenever a field is changed
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -19,7 +23,7 @@ export function EditDriverForm({ id, city, driverID, editDriver, toggleModal }) 
 
     return (
         <>
-            <div className="flex justify-center items-center gap-x-2">
+            <div onKeyDown={handleSubmitPress} className="flex justify-center items-center gap-x-2">
                 <div className="flex flex-col items-center">
                     <label>Driver ID</label>
                     <label>City</label>

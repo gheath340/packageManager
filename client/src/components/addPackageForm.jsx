@@ -11,14 +11,24 @@ export function NewPackageForm({ addPackage, toggleModal, cities }) {
         setNewPackage({...newPackage, [name]: value,})
     }
 
+    const handleSubmitPress = (event) => {
+        if (event.key === "Enter") {
+            onSubmit()
+        }
+    }
+
+    const onSubmit = () => {
+        toggleModal()
+        addPackage(newPackage, null, "add")
+    }
+
     return (
         <>
-            <div className="flex justify-center items-center gap-x-2">
+            <div onKeyDown={handleSubmitPress} className="flex justify-center items-center gap-x-2">
                 <div className="flex flex-col items-center">
                     <label>TBA</label>
                     <label>Item</label>
                     <label>Weight</label>
-                    {/* <label>Location</label> */}
                     <label>City</label>
                 </div>
                 <div className="flex flex-col divide-y divide-gray-300">
@@ -51,7 +61,7 @@ export function NewPackageForm({ addPackage, toggleModal, cities }) {
                 </div>
             </div>
             <div className="flex w-1/2 items-center gap-x-2">
-                <button onClick={() => { addPackage(newPackage, null, "add"); toggleModal() }} className="border 
+                <button onClick={onSubmit} className="border 
                   border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full">
                                                            <Link to="/packages">Add</Link></button>
                 <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 

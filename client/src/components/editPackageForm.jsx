@@ -6,6 +6,12 @@ export function EditPackageForm({ tba, weight, item, location, city, driverID, e
     const [newPackage, setNewPackage] = useState({"tba": tba, "item": item, "weight": weight, 
                                    "location": location, "city": city, "driverID": driverID})
     
+    const handleSubmitPress = (event) => {
+        if (event.key === "Enter") {
+            onSubmit()
+        }
+    }
+
     const onSubmit = () => {
         toggleModal()
         editPackage(newPackage, packageID, "edit")
@@ -19,7 +25,7 @@ export function EditPackageForm({ tba, weight, item, location, city, driverID, e
 
     return (
         <>
-            <div className="flex justify-center items-center gap-x-2">
+            <div onKeyDown={handleSubmitPress} className="flex justify-center items-center gap-x-2">
                 <div className="flex flex-col items-center">
                     <label>TBA</label>
                     <label>Item</label>
