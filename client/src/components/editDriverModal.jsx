@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { EditDriverForm } from "./editDriverForm"
 
 
-export function EditDriverModal({ city, driverID, editDriver }) {
+export function EditDriverModal({ id, driverID,city, editDriver }) {
     const [modal, setModal] = useState(false)
 
     //sets modal opened or closed
@@ -21,7 +21,7 @@ export function EditDriverModal({ city, driverID, editDriver }) {
                 <div className="flex flex-col justify-center items-center w-2/3 h-1/2 lg:h-3/5 lg:w-2/5 
                               bg-white border border-gray-700 rounded-lg gap-y-5">
                     <h1 className="text-3xl">Edit Driver</h1>
-                    <EditDriverForm city={city} driverID={driverID} 
+                    <EditDriverForm id={id} city={city} driverID={driverID} 
                     editDriver={editDriver} toggleModal={toggleModal}/>
                 </div>
             </div>

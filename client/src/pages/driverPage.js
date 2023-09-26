@@ -45,22 +45,24 @@ export function DriverPage() {
         }
     }
 
-    const checkNewDriverFields = (newDriverInfo) => {
+    const checkNewDriverFields = (newDriverInfo, type) => {
         let failed = false
-       if (newDriverInfo["city"] === "" || newDriverInfo["driverID"] === "") {
+        if (newDriverInfo["city"] === "" || newDriverInfo["driverID"] === "") {
             alert("Please fill in all fields.")
             failed = true
-       }else{
-            //make sure driver id or city dont match any other drivers
+        }else{
             drivers.forEach(driver => {
-                if (driver.city === newDriverInfo["city"] || driver.driverID === newDriverInfo["driverID"]){
+                if ((driver.city === newDriverInfo["city"] && driver._id !== newDriverInfo["id"]) || 
+                (driver.driverID === newDriverInfo["driverID"] && driver._id !== newDriverInfo["id"])){
                     alert("Driver ID or city has already been assigned.")
                     failed = true
                 }
             })
-       }if (!failed){
+        }if (!failed && type === "add"){
             addDriver(newDriverInfo)
-       }
+        }else if (!failed && type === "edit") {
+            editDriver(newDriverInfo["id"], newDriverInfo)
+        }
     }
 
     const addDriver = async (newDriverInfo) => {
@@ -99,7 +101,7 @@ export function DriverPage() {
             <NavBar />
             <div className="text-4xl mt-5 xl:mt-10">Drivers</div>
             <div className="flex flex-col lg:flex-row w-full pt-36 pb-4 justify-evenly items-center">
-                <DriverList drivers={drivers} deleteDriver={deleteDriver} editDriver={editDriver} 
+                <DriverList drivers={drivers} deleteDriver={deleteDriver} editDriver={checkNewDriverFields} 
                 toggleOpenDriverItems={toggleOpenDriverItems} openDriverItems={openDriverItems}/>
             </div>
             <AddDriverModal addDriver={checkNewDriverFields}/>

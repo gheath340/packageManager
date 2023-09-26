@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-export function EditDriverForm({ driverID, city, editDriver, toggleModal }) {
-    const [newDriver, setNewDriver] = useState({"city": city, "driverID": driverID})
+export function EditDriverForm({ id, city, driverID, editDriver, toggleModal }) {
+    const [newDriver, setNewDriver] = useState({"id": id, "city": city, "driverID": driverID})
 
     //updates driver info whenever a field is changed
     const handleInputChange = (e) => {
@@ -32,7 +32,7 @@ export function EditDriverForm({ driverID, city, editDriver, toggleModal }) {
                 </div>
             </div>
             <div className="flex w-1/2 items-center gap-x-2">
-                <button onClick={() => { editDriver(driverID, newDriver); toggleModal() }} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/drivers">Submit</Link></button>
+                <button onClick={() => { editDriver(newDriver, "edit"); toggleModal() }} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/drivers">Submit</Link></button>
                 <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/drivers">Cancel</Link></button>
             </div>
         </>

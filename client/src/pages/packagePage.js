@@ -40,7 +40,7 @@ export function PackagePage() {
         setPackages(packages => packages.filter(p => p._id !== data._id))
     }
 
-    const checkNewPackageFields = (newPackageInfo, id, type) => {
+    const checkNewPackageFields = (newPackageInfo, id,  type) => {
         let failed = false
        if (newPackageInfo["tba"] === "" || newPackageInfo["item"] === "" || newPackageInfo["weight"] === "" || newPackageInfo["city"] === "") {
             alert("Please fill in all fields.")

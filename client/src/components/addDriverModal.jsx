@@ -1,6 +1,6 @@
 import React from "react"
 import { useState } from 'react'
-import { NewDriverForm } from "./newDriverForm"
+import { NewDriverForm } from "./addDriverForm"
 
 
 export function AddDriverModal({ addDriver }) {

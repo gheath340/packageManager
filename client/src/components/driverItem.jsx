@@ -27,7 +27,7 @@ export function DriverItem({ id, driverID, packages, active, lastStop, nextStop,
                 <div className="flex flex-col">
                     <button onClick={() => deleteDriver(id)} className="border border-gray-700 rounded-md 
                                             hover:scale-110 hover:duration-200 p-1">Delete</button>
-                    <EditDriverModal driverID={driverID} city={city} editDriver={editDriver}/>
+                    <EditDriverModal id={id} driverID={driverID} city={city} editDriver={editDriver}/>
                 </div>
             </div>
             <button onClick={() => { toggleOpenDriverItems(driverID); toggleList() }} className="self-center">

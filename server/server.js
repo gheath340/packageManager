@@ -141,11 +141,11 @@ app.post('/driver/add', (req, res) => {
 
 //update driver info
 app.put('/driver/update/:id', async (req, res) => {
-    const driver = await Driver.find({ driverID: req.params.id })
-    driver[0].driverID = req.body.driverID
-    driver[0].city = req.body.city
+    const driver = await Driver.findById(req.params.id)
+    driver.driverID = req.body.driverID
+    driver.city = req.body.city
 
-    driver[0].save()
+    driver.save()
 
     res.json(driver)
 })
