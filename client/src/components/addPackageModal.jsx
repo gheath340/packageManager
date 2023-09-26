@@ -1,9 +1,9 @@
 import React from "react"
 import { useState } from 'react'
-import { NewPackageForm } from "./addPackageForm"
+import { AddPackageForm } from "./addPackageForm"
 
 
-export function AddPackageModal({ addPackage, cities }) {
+export function AddPackageModal({ addPackage, cities, packages }) {
     const [modal, setModal] = useState(false)
 
     //change if modal is opened or closed
@@ -21,11 +21,10 @@ export function AddPackageModal({ addPackage, cities }) {
                 <div className="absolute flex flex-col justify-center items-center w-2/3 h-1/2 lg:h-3/5 lg:w-2/5 
                                 bg-white border border-gray-700 rounded-lg gap-y-5 top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
                     <h1 className="text-3xl">Add Package</h1>
-                    <NewPackageForm addPackage={addPackage} toggleModal={toggleModal} cities={cities}/>
+                    <AddPackageForm addPackage={addPackage} toggleModal={toggleModal} cities={cities} packages={packages}/>
                 </div>
             </>
-            )}
-            
+            )} 
         </>
     )
 }

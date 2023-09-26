@@ -4,6 +4,7 @@ import { PackageList } from "../components/packageList"
 import { useState, useEffect } from 'react'
 import { AddPackageModal } from "../components/addPackageModal"
 
+
 const API_BASE = "http://localhost:3001"
 
 export function PackagePage() {
@@ -41,20 +42,9 @@ export function PackagePage() {
     }
 
     const checkNewPackageFields = (newPackageInfo, id, type) => {
-        let failed = false
-       if (newPackageInfo["tba"] === "" || newPackageInfo["item"] === "" || newPackageInfo["weight"] === "" || newPackageInfo["city"] === "") {
-            alert("Please fill in all fields.")
-            failed = true
-       }else{
-            packages.forEach(p => {
-                if (newPackageInfo["tba"] === p.tba && id !== p._id){
-                    alert("TBA has already been assigned.")
-                    failed = true
-                }
-            })
-       }if (!failed && type === "add"){
+       if (type === "add"){
             addPackage(newPackageInfo)
-       }else if (!failed && type === "edit") {
+       }else if (type === "edit") {
             editPackage(id, newPackageInfo)
        }
     }
@@ -113,15 +103,13 @@ export function PackagePage() {
     }
 
     return (
-        <>
         <div className="flex flex-col items-center h-full">
             <NavBar />
             <div className="text-4xl mt-5 mb-5 xl:mt-10 xl:mb-10">Packages</div>
             <div className="flex flex-row w-full justify-evenly items-start py-10">
                 <PackageList packages={packages} deletePackage={deletePackage} editPackage={checkNewPackageFields} cities={cities}/>
             </div>
-            <AddPackageModal addPackage={checkNewPackageFields} cities={cities}/>
+            <AddPackageModal addPackage={checkNewPackageFields} cities={cities} packages={packages}/>
         </div>
-        </>
     )
 }

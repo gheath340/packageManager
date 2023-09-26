@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { ToastContainer, toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
-export function NewPackageForm({ addPackage, toggleModal, cities }) {
+export function AddPackageForm({ addPackage, toggleModal, cities, packages }) {
     const [newPackage, setNewPackage] = useState({"tba": "", "item": "", "weight": "", "location": "FC", 
                                                   "city": ""})
 
@@ -13,13 +15,39 @@ export function NewPackageForm({ addPackage, toggleModal, cities }) {
 
     const handleSubmitPress = (event) => {
         if (event.key === "Enter") {
-            onSubmit()
+            errorCheck()
         }
+    }
+
+    const EmptyInputsError = () => {
+        toast.error('Please fill in all fields.', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true, position: toast.POSITION.BOTTOM_RIGHT });
+    }
+
+    const UsedTbaError = () => {
+        toast.error('TBA has already been assigned', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });  
     }
 
     const onSubmit = () => {
         toggleModal()
         addPackage(newPackage, null, "add")
+    }
+
+    const errorCheck = () => {
+        let failed = false
+        if (newPackage["tba"] === "" || newPackage["item"] === "" || newPackage["weight"] === "" || newPackage["city"] === "") {
+            EmptyInputsError()
+            failed = true
+        }else{
+            packages.forEach(p => {
+                if (newPackage["tba"] === p.tba){
+                    UsedTbaError()
+                    failed = true
+                }
+            })
+       }
+       if (!failed){
+            onSubmit()
+       }
     }
 
     return (
@@ -61,12 +89,13 @@ export function NewPackageForm({ addPackage, toggleModal, cities }) {
                 </div>
             </div>
             <div className="flex w-1/2 items-center gap-x-2">
-                <button onClick={onSubmit} className="border 
+                <button onClick={errorCheck} className="border 
                   border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full">
                                                            <Link to="/packages">Add</Link></button>
                 <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 
                              hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Cancel</Link></button>
             </div>
+            <ToastContainer />
         </>
     )
 }
