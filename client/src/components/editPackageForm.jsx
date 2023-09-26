@@ -6,6 +6,11 @@ export function EditPackageForm({ tba, weight, item, location, city, driverID, e
     const [newPackage, setNewPackage] = useState({"tba": tba, "item": item, "weight": weight, 
                                    "location": location, "city": city, "driverID": driverID})
     
+    const onSubmit = () => {
+        toggleModal()
+        editPackage(newPackage, packageID, "edit")
+    }
+
     //update package info everytime a field is changed
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -60,7 +65,7 @@ export function EditPackageForm({ tba, weight, item, location, city, driverID, e
                 </div>
             </div>
             <div className="flex w-1/2 items-center gap-x-2">
-                <button onClick={() => { editPackage(newPackage, packageID, "edit"); toggleModal() }} 
+                <button onClick={onSubmit} 
                 className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 
                                           w-full"><Link to="/packages">Submit</Link></button>
                 <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 

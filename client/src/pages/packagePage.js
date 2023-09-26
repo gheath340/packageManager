@@ -40,14 +40,14 @@ export function PackagePage() {
         setPackages(packages => packages.filter(p => p._id !== data._id))
     }
 
-    const checkNewPackageFields = (newPackageInfo, id,  type) => {
+    const checkNewPackageFields = (newPackageInfo, id, type) => {
         let failed = false
        if (newPackageInfo["tba"] === "" || newPackageInfo["item"] === "" || newPackageInfo["weight"] === "" || newPackageInfo["city"] === "") {
             alert("Please fill in all fields.")
             failed = true
        }else{
             packages.forEach(p => {
-                if (newPackageInfo["tba"] === p.tba){
+                if (newPackageInfo["tba"] === p.tba && id !== p._id){
                     alert("TBA has already been assigned.")
                     failed = true
                 }
