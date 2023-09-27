@@ -20,7 +20,7 @@ export function AddPackageForm({ addPackage, toggleModal, cities, packages }) {
     }
 
     const EmptyInputsError = () => {
-        toast.error('Please fill in all fields.', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true, position: toast.POSITION.BOTTOM_RIGHT });
+        toast.error('Please fill in all fields.', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });
     }
 
     const UsedTbaError = () => {
@@ -95,7 +95,6 @@ export function AddPackageForm({ addPackage, toggleModal, cities, packages }) {
                 <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 
                              hover:duration-200 p-1 mt-3 w-full"><Link to="/packages">Cancel</Link></button>
             </div>
-            <ToastContainer />
         </>
     )
 }

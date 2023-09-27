@@ -1,6 +1,7 @@
 import React from "react"
 import { useState } from 'react'
 import { AddPackageForm } from "./addPackageForm"
+import { ToastContainer, toast } from "react-toastify"
 
 
 export function AddPackageModal({ addPackage, cities, packages }) {
@@ -25,6 +26,7 @@ export function AddPackageModal({ addPackage, cities, packages }) {
                 </div>
             </>
             )} 
+            <ToastContainer />
         </>
     )
 }
