@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { toast } from "react-toastify"
+
 
 export function EditPackageForm({ tba, weight, item, location, city, driverID, editPackage, toggleModal, 
-                                  packageID, cities }) {
+                                  packageID, cities, packages }) {
     const [newPackage, setNewPackage] = useState({"tba": tba, "item": item, "weight": weight, 
                                    "location": location, "city": city, "driverID": driverID})
     
@@ -21,6 +23,32 @@ export function EditPackageForm({ tba, weight, item, location, city, driverID, e
     const handleInputChange = (e) => {
         const { name, value } = e.target
         setNewPackage({...newPackage, [name]: value,})
+    }
+
+    const EmptyInputsError = () => {
+        toast.error('Please fill in all fields.', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });
+    }
+
+    const UsedTbaError = () => {
+        toast.error('TBA has already been assigned', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });  
+    }
+
+    const errorCheck = () => {
+        let failed = false
+        if (newPackage["tba"] === "" || newPackage["item"] === "" || newPackage["weight"] === "" || newPackage["city"] === "") {
+            EmptyInputsError()
+            failed = true
+        }else{
+            packages.forEach(p => {
+                if (newPackage["tba"] === p.tba && packageID !== p._id){
+                    UsedTbaError()
+                    failed = true
+                }
+            })
+       }
+       if (!failed){
+            onSubmit()
+       }
     }
 
     return (
@@ -71,7 +99,7 @@ export function EditPackageForm({ tba, weight, item, location, city, driverID, e
                 </div>
             </div>
             <div className="flex w-1/2 items-center gap-x-2">
-                <button onClick={onSubmit} 
+                <button onClick={errorCheck} 
                 className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 
                                           w-full"><Link to="/packages">Submit</Link></button>
                 <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 

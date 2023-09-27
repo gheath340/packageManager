@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
-import { ToastContainer, toast } from "react-toastify"
+import { toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 
 export function AddPackageForm({ addPackage, toggleModal, cities, packages }) {
@@ -19,17 +19,19 @@ export function AddPackageForm({ addPackage, toggleModal, cities, packages }) {
         }
     }
 
+    const onSubmit = () => {
+        toggleModal()
+        addPackage(newPackage, null, "add")
+    }
+
     const EmptyInputsError = () => {
+        console.log("test")
         toast.error('Please fill in all fields.', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });
     }
 
     const UsedTbaError = () => {
+        console.log("test")
         toast.error('TBA has already been assigned', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });  
-    }
-
-    const onSubmit = () => {
-        toggleModal()
-        addPackage(newPackage, null, "add")
     }
 
     const errorCheck = () => {

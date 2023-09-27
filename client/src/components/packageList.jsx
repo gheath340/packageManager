@@ -9,7 +9,7 @@ export function PackageList({ packages, deletePackage, editPackage, cities }) {
                 return (
                     <PackageItem id={p._id} tba={p.tba} weight={p.weight} item={p.item} location={p.location} 
                     city={p.city} driverID={p.driverID} deletePackage={deletePackage} editPackage={editPackage} 
-                    key={p._id} cities={cities}/>
+                    key={p._id} cities={cities} packages={packages}/>
                 )
             })}
         </ul> 

@@ -107,7 +107,8 @@ export function PackagePage() {
             <NavBar />
             <div className="text-4xl mt-5 mb-5 xl:mt-10 xl:mb-10">Packages</div>
             <div className="flex flex-row w-full justify-evenly items-start py-10">
-                <PackageList packages={packages} deletePackage={deletePackage} editPackage={checkNewPackageFields} cities={cities}/>
+                <PackageList packages={packages} deletePackage={deletePackage} editPackage={checkNewPackageFields} 
+                    cities={cities}/>
             </div>
             <AddPackageModal addPackage={checkNewPackageFields} cities={cities} packages={packages}/>
         </div>
