@@ -90,7 +90,7 @@ const updatePackageCity = async (p, driver1, req) => {
 }
 
 //update specific package in drivers list
-const updateDriverPackages = async (p, driver) => {
+const updateDriverPackages = (p, driver) => {
     const index = driver[0].packages.findIndex(package => 
         package._id.toString() === p._id.toString())
     
@@ -139,9 +139,23 @@ app.post('/driver/add', (req, res) => {
     res.json(driver)
 })
 
+const updatePackagesDriverID = async (driver, newID) => {
+    //for each package in drivers package list
+    //get package by id and update driverID
+    driver.packages.forEach(async package => {
+        const p = await Package.findById(package._id)
+        p.driverID = newID
+
+        p.save()
+    })
+}
+
 //update driver info
 app.put('/driver/update/:id', async (req, res) => {
     const driver = await Driver.findById(req.params.id)
+    if (driver.driverID !== req.body.driverID){
+        updatePackagesDriverID(driver, req.body.driverID)
+    }
     driver.driverID = req.body.driverID
     driver.city = req.body.city
 

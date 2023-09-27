@@ -79,6 +79,7 @@ export function DriverPage() {
         setDrivers([...drivers, data])
     }
 
+    //when a driver is edited edit driverID of all associated packages
     const editDriver = async (id, newDriverInfo) => {
         const data = await fetch(API_BASE + "/driver/update/" + id, {
             method: "PUT",
