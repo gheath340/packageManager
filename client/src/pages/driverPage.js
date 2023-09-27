@@ -104,7 +104,7 @@ export function DriverPage() {
                 <DriverList drivers={drivers} deleteDriver={deleteDriver} editDriver={checkNewDriverFields} 
                 toggleOpenDriverItems={toggleOpenDriverItems} openDriverItems={openDriverItems}/>
             </div>
-            <AddDriverModal addDriver={checkNewDriverFields}/>
+            <AddDriverModal addDriver={checkNewDriverFields} drivers={drivers}/>
         </div>
         </>
     )

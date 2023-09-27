@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { toast } from "react-toastify"
 
-export function EditDriverForm({ id, city, driverID, editDriver, toggleModal }) {
+
+export function EditDriverForm({ id, city, driverID, editDriver, toggleModal, drivers }) {
     const [newDriver, setNewDriver] = useState({"id": id, "city": city, "driverID": driverID})
 
     const handleSubmitPress = (event) => {
         if (event.key === "Enter") {
-            onSubmit()
+            errorCheck()
         }
     }
 
@@ -19,6 +21,34 @@ export function EditDriverForm({ id, city, driverID, editDriver, toggleModal }) 
     const handleInputChange = (e) => {
         const { name, value } = e.target
         setNewDriver({...newDriver, [name]: value,})
+    }
+
+    const EmptyInputsError = () => {
+        toast.error('Please fill in all fields.', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });
+    }
+
+    const UsedError = () => {
+        toast.error('Driver ID or city has already been assigned', { hideProgressBar: true, closeOnClick: true, 
+                                                                     pauseOnHover: true });
+    }
+
+    const errorCheck = () => {
+        let failed = false
+        if (newDriver["driverID"] === "" || newDriver["city"] === "") {
+            EmptyInputsError()
+            failed = true
+        }else{
+            drivers.forEach(d => {
+                if ((newDriver["driverID"] === d.driverID && id !== d._id) || 
+                    (newDriver["city"] === d.city && id !== d._id)){
+                    UsedError()
+                    failed = true
+                }
+            })
+       }
+       if (!failed){
+            onSubmit()
+       }
     }
 
     return (
@@ -43,7 +73,7 @@ export function EditDriverForm({ id, city, driverID, editDriver, toggleModal }) 
                 </div>
             </div>
             <div className="flex w-1/2 items-center gap-x-2">
-                <button onClick={onSubmit} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/drivers">Submit</Link></button>
+                <button onClick={errorCheck} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/drivers">Submit</Link></button>
                 <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/drivers">Cancel</Link></button>
             </div>
         </>

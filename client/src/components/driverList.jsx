@@ -10,7 +10,7 @@ export function DriverList({ drivers, deleteDriver, editDriver, toggleOpenDriver
                     <DriverItem id={d._id} driverID={d.driverID} packages={d.packages} active={d.active} 
                     lastStop={d.lastStop} nextStop={d.nextStop} city={d.city} deleteDriver={deleteDriver} 
                     editDriver={editDriver} key={d._id} toggleOpenDriverItems={toggleOpenDriverItems} 
-                    openDriverItems={openDriverItems}/>
+                    openDriverItems={openDriverItems} drivers={drivers}/>
                 )
             })}
         </ul> 

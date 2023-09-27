@@ -25,18 +25,16 @@ export function AddPackageForm({ addPackage, toggleModal, cities, packages }) {
     }
 
     const EmptyInputsError = () => {
-        console.log("test")
         toast.error('Please fill in all fields.', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });
     }
 
     const UsedTbaError = () => {
-        console.log("test")
         toast.error('TBA has already been assigned', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });  
     }
 
     const errorCheck = () => {
         let failed = false
-        if (newPackage["tba"] === "" || newPackage["item"] === "" || newPackage["weight"] === "" || newPackage["city"] === "") {
+        if (newPackage["tba"] === "" || newPackage["item"] === "" || newPackage["weight"] === "" || newPackage["city"] === ""){
             EmptyInputsError()
             failed = true
         }else{

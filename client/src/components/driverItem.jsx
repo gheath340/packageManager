@@ -4,7 +4,7 @@ import { Arrow } from "../components/arrow"
 import { useState } from 'react'
 
 export function DriverItem({ id, driverID, packages, active, lastStop, nextStop, city, deleteDriver, 
-                             editDriver, toggleOpenDriverItems, openDriverItems }) {
+                             editDriver, toggleOpenDriverItems, openDriverItems, drivers }) {
     const [list, setList] = useState(false)
 
     //changes if package list is showing or not
@@ -27,7 +27,7 @@ export function DriverItem({ id, driverID, packages, active, lastStop, nextStop,
                 <div className="flex flex-col">
                     <button onClick={() => deleteDriver(id)} className="border border-gray-700 rounded-md 
                                             hover:scale-110 hover:duration-200 p-1">Delete</button>
-                    <EditDriverModal id={id} driverID={driverID} city={city} editDriver={editDriver}/>
+                    <EditDriverModal id={id} driverID={driverID} city={city} editDriver={editDriver} drivers={drivers}/>
                 </div>
             </div>
             <button onClick={() => { toggleOpenDriverItems(driverID); toggleList() }} className="self-center">

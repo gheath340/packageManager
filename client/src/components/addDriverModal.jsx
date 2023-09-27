@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { NewDriverForm } from "./addDriverForm"
 
 
-export function AddDriverModal({ addDriver }) {
+export function AddDriverModal({ addDriver, drivers }) {
     const [modal, setModal] = useState(false)
 
     //change if modal is open or closed
@@ -21,7 +21,7 @@ export function AddDriverModal({ addDriver }) {
                 <div className="absolute flex flex-col justify-center items-center w-2/3 h-1/2 lg:h-3/5 lg:w-2/5 
                                 bg-white border border-gray-700 rounded-lg gap-y-5 top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
                     <h1 className="text-3xl">Add Driver</h1>
-                    <NewDriverForm addDriver={addDriver} toggleModal={toggleModal}/>
+                    <NewDriverForm addDriver={addDriver} toggleModal={toggleModal} drivers={drivers}/>
                 </div>
             </>
             )}
