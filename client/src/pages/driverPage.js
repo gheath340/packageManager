@@ -45,22 +45,11 @@ export function DriverPage() {
         }
     }
 
+    //makes sure fields are filled out properly
     const checkNewDriverFields = (newDriverInfo, type) => {
-        let failed = false
-        if (newDriverInfo["city"] === "" || newDriverInfo["driverID"] === "") {
-            alert("Please fill in all fields.")
-            failed = true
-        }else{
-            drivers.forEach(driver => {
-                if ((driver.city === newDriverInfo["city"] && driver._id !== newDriverInfo["id"]) || 
-                (driver.driverID === newDriverInfo["driverID"] && driver._id !== newDriverInfo["id"])){
-                    alert("Driver ID or city has already been assigned.")
-                    failed = true
-                }
-            })
-        }if (!failed && type === "add"){
+        if (type === "add"){
             addDriver(newDriverInfo)
-        }else if (!failed && type === "edit") {
+        }else if (type === "edit") {
             editDriver(newDriverInfo["id"], newDriverInfo)
         }
     }
@@ -79,7 +68,7 @@ export function DriverPage() {
         setDrivers([...drivers, data])
     }
 
-    //when a driver is edited edit driverID of all associated packages
+    //add a check when updating city, do not allow if driver has packages assigned
     const editDriver = async (id, newDriverInfo) => {
         const data = await fetch(API_BASE + "/driver/update/" + id, {
             method: "PUT",

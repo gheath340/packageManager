@@ -140,8 +140,6 @@ app.post('/driver/add', (req, res) => {
 })
 
 const updatePackagesDriverID = async (driver, newID) => {
-    //for each package in drivers package list
-    //get package by id and update driverID
     driver.packages.forEach(async package => {
         const p = await Package.findById(package._id)
         p.driverID = newID

@@ -31,6 +31,11 @@ export function EditDriverForm({ id, city, driverID, editDriver, toggleModal, dr
         toast.error('Driver ID or city has already been assigned', { hideProgressBar: true, closeOnClick: true, 
                                                                      pauseOnHover: true });
     }
+    
+    const cityChangeError = () => {
+        toast.error('Can not change city while packages are assigned.', { hideProgressBar: true, closeOnClick: true, 
+            pauseOnHover: true });
+    }
 
     const errorCheck = () => {
         let failed = false
@@ -42,6 +47,12 @@ export function EditDriverForm({ id, city, driverID, editDriver, toggleModal, dr
                 if ((newDriver["driverID"] === d.driverID && id !== d._id) || 
                     (newDriver["city"] === d.city && id !== d._id)){
                     UsedError()
+                    failed = true
+                }
+            })
+            drivers.forEach(driver => {
+                if (driver._id === id && driver.packages.length !== 0){
+                    cityChangeError()
                     failed = true
                 }
             })

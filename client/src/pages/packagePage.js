@@ -41,6 +41,7 @@ export function PackagePage() {
         setPackages(packages => packages.filter(p => p._id !== data._id))
     }
 
+    //makes sure fields are filled out properly
     const checkNewPackageFields = (newPackageInfo, id, type) => {
        if (type === "add"){
             addPackage(newPackageInfo)
