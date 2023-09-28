@@ -4,18 +4,18 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const cors = require('cors')
 const dotenv = require('dotenv')
+dotenv.config()
 const app = express()
 app.use(express.json())
 app.use(cors())
 
-dotenv.config()
 
 //connect to mongodb database
-mongoose.connect("mongodb://127.0.0.1:27017/packageTracker",{
+mongoose.connect(process.env.DB_PATH,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-    .then(() => console.log("db connected"))
+    .then(() => console.log("Connected"))
     .catch(console.error)
 
 //get db models
@@ -185,62 +185,82 @@ app.delete('/driver/delete/:id', async (req, res) => {
     res.json(output)
 })
 
-app.post('/register', async (req, res) => {
-    const user = req.body
+// const verifyJWT = (req, res, next) => {
+//     const token = req.headers['x-access-token']?.split(' ')[1]
 
-    const takenUsername = await User.findOne({username: user.username})
+//     if(token) {
+//         jwt.verify(token, process.env.PASSPORTSECRET, (err, decoded) => {
+//             if (err) return res.json({isLoggedIn: false, message: "Failed to authenticate"})
+//             req.user = {}
+//             req.user.id = decoded.id
+//             req.user.username = decoded.username
+//             next()
+//         })
+//     } else {
+//         res.json({message: "Incorrect token given", isLoggedIn: false})
+//     }
+// }
 
-    if(takenUserName){
-        res.json({message: "Username is taken"})
-    }else{
-        user.password = await bcrypt.hash(req.body.password, 10)
+// app.get('/getUsername', verifyJWT, (req, res) => {
+//     res.json({isLoggedIn: true, username: req.user.username})
+// })
 
-        const dbUser = new User({
-            username: user.username.toLowerCase(),
-            password: user.password,
-            type: user.type,
-            driverID: user.driverID
-        })
+// app.post('/register', async (req, res) => {
+//     const user = req.body
 
-        dbUser.save()
-        res.json({message: 'Success'})
-    }
-})
+//     const takenUsername = await User.findOne({username: user.username})
 
-app.post('/login', (req, res) => {
-    User.findOne({username: req.body.username})
-    .then(dbUser => {
-        if(!dbUser) {
-            return res.json({
-                message: "Invalid Username or Password"
-            })
-        }
-        bcrypt.compare(req.body.password, dbUser.password)
-        .then(isCorrect => {
-            if(isCorrect) {
-                const payload = {
-                    id: dbUser._id,
-                    username: dbUser.username,
-                    type: dbUser.type
-                }
+//     if(takenUserName){
+//         res.json({message: "Username is taken"})
+//     }else{
+//         user.password = await bcrypt.hash(req.body.password, 10)
 
-                jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: 86400},
-                    (err, token) => {
-                        if (err) return res.json({message: err})
-                        return res.json({
-                            message: "Success",
-                            token: "Bearer " + token
-                        })
-                    }
-                )
-            }else{
-                return res.json({
-                    message: "Invalid Username or Password"
-                })
-            }
-        })
-    })
-})
+//         const dbUser = new User({
+//             username: user.username.toLowerCase(),
+//             password: user.password,
+//             type: user.type,
+//             driverID: user.driverID
+//         })
+
+//         dbUser.save()
+//         res.json({message: 'Success'})
+//     }
+// })
+
+// app.post('/login', (req, res) => {
+//     User.findOne({username: req.body.username})
+//     .then(dbUser => {
+//         if(!dbUser) {
+//             return res.json({
+//                 message: "Invalid Username or Password"
+//             })
+//         }
+//         bcrypt.compare(req.body.password, dbUser.password)
+//         .then(isCorrect => {
+//             if(isCorrect) {
+//                 const payload = {
+//                     id: dbUser._id,
+//                     username: dbUser.username,
+//                     type: dbUser.type
+//                 }
+
+//                 jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: 86400},
+//                     (err, token) => {
+//                         if (err) return res.json({message: err})
+//                         return res.json({
+//                             message: "Success",
+//                             token: "Bearer " + token
+//                         })
+//                     }
+//                 )
+//             }else{
+//                 return res.json({
+//                     message: "Invalid Username or Password"
+//                 })
+//             }
+//         })
+//     })
+// })
 
 
 app.listen(3001, () => console.log("server connected on 3001"))
