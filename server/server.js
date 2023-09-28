@@ -1,9 +1,14 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
 const cors = require('cors')
+const dotenv = require('dotenv')
 const app = express()
 app.use(express.json())
 app.use(cors())
+
+dotenv.config()
 
 //connect to mongodb database
 mongoose.connect("mongodb://127.0.0.1:27017/packageTracker",{
@@ -16,10 +21,13 @@ mongoose.connect("mongodb://127.0.0.1:27017/packageTracker",{
 //get db models
 const Package = require('./models/package')
 const Driver = require('./models/driver')
+const User = require('./models/user')
+
 
 //get all packages
 app.get('/packages', async (req, res) => {
     const p = await Package.find()
+
     res.json(p)
 })
 
@@ -175,6 +183,63 @@ app.delete('/driver/delete/:id', async (req, res) => {
     }
 
     res.json(output)
+})
+
+app.post('/register', async (req, res) => {
+    const user = req.body
+
+    const takenUsername = await User.findOne({username: user.username})
+
+    if(takenUserName){
+        res.json({message: "Username is taken"})
+    }else{
+        user.password = await bcrypt.hash(req.body.password, 10)
+
+        const dbUser = new User({
+            username: user.username.toLowerCase(),
+            password: user.password,
+            type: user.type,
+            driverID: user.driverID
+        })
+
+        dbUser.save()
+        res.json({message: 'Success'})
+    }
+})
+
+app.post('/login', (req, res) => {
+    User.findOne({username: req.body.username})
+    .then(dbUser => {
+        if(!dbUser) {
+            return res.json({
+                message: "Invalid Username or Password"
+            })
+        }
+        bcrypt.compare(req.body.password, dbUser.password)
+        .then(isCorrect => {
+            if(isCorrect) {
+                const payload = {
+                    id: dbUser._id,
+                    username: dbUser.username,
+                    type: dbUser.type
+                }
+
+                jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: 86400},
+                    (err, token) => {
+                        if (err) return res.json({message: err})
+                        return res.json({
+                            message: "Success",
+                            token: "Bearer " + token
+                        })
+                    }
+                )
+            }else{
+                return res.json({
+                    message: "Invalid Username or Password"
+                })
+            }
+        })
+    })
 })
 
 
