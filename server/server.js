@@ -53,7 +53,7 @@ app.get('/driver/cities', async (req, res) => {
 //create a new package and add it to appropriate drivers list
 app.post('/package/add', async (req, res) => {
     const p = new Package({ tba: req.body.tba, weight: req.body.weight, item: req.body.item, 
-              location: req.body.location, city: req.body.city, driverID: req.body.driverID })
+            location: req.body.location, city: req.body.city, driverID: req.body.driverID })
 
     const driver = await Driver.find({ driverID: req.body.driverID })
     driver[0].packages.push(p)
