@@ -9,6 +9,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
+const package = require('./packageRoute.js')
 
 //connect to mongodb database
 mongoose.connect(process.env.DB_PATH,{
@@ -18,102 +19,30 @@ mongoose.connect(process.env.DB_PATH,{
     .then(() => console.log("Connected"))
     .catch(console.error)
 
-//get db models
-const Package = require('./models/package')
-const Driver = require('./models/driver')
-const User = require('./models/user')
-
-
 //get all packages
 app.get('/packages', async (req, res) => {
-    const p = await Package.find()
-
-    res.json(p)
+    res.json(await package.getPackages())
 })
 
 //get package based on id
 app.get('/package/:id', async (req, res) => {
-    const p = await Package.findById(req.body.id)
-
-    res.json(p)
-})
-
-//get the cities of all drivers
-app.get('/driver/cities', async (req, res) => {
-    const d = await Driver.find()
-    //for each driver get the city property and add to list
-    const cities = []
-    d.forEach((driver) => {
-        cities.push(driver.city)
-    })
-
-    res.json(cities)
+    res.json(await package.getPackage(req.body.id))
 })
 
 //create a new package and add it to appropriate drivers list
 app.post('/package/add', async (req, res) => {
-    const p = new Package({ tba: req.body.tba, weight: req.body.weight, item: req.body.item, 
-            location: req.body.location, city: req.body.city, driverID: req.body.driverID })
-
-    const driver = await Driver.find({ driverID: req.body.driverID })
-    driver[0].packages.push(p)
-
-    driver[0].save()
-    p.save()
-
-    res.json(p)
+    res.json(await package.addPackage(req.body))
 })
 
 //update package info
 app.put('/package/update/:id', async (req, res) => {
-    const p = await Package.findById(req.params.id)
-    const d = await Driver.find( { driverID: req.body.driverID })
-
-    if (p.city !== req.params.city) {
-        updatePackageCity(p, d, req)
-    }
-
-    p.tba = req.body.tba
-    p.weight = req.body.weight
-    p.item = req.body.item
-    p.location = req.body.location
-    p.city = req.body.city
-    p.driverID = req.body.newDriverID
-
-    updateDriverPackages(p, d)
-
-    d[0].save()
-    p.save()
-    res.json(p)
+    res.json(await package.updatepackage(req.body, req.params))
 })
 
-//delete package from old drivers list and add it to the new one
-const updatePackageCity = async (p, driver1, req) => {
-    driver1[0].packages = driver1[0].packages.filter(package => 
-                    package._id.toString() !== req.params.id)
-
-    const driver2 = await Driver.find({ driverID: req.body.newDriverID })
-    driver2[0].packages.push(p)
-    driver2[0].save()
-}
-
-//update specific package in drivers list
-const updateDriverPackages = (p, driver) => {
-    const index = driver[0].packages.findIndex(package => 
-        package._id.toString() === p._id.toString())
-    
-        driver[0].packages[index] = p
-}
 
 //delete package based on id
 app.delete('/package/delete/:id', async (req, res) => {
-    const p = await Package.findByIdAndDelete(req.params.id)
-    const d = await Driver.find( { driverID: req.body.driverID })
-
-    d[0].packages = d[0].packages.filter(package => package._id.toString() !== req.params.id)
-
-    d[0].save()
-    res.json(p)
+    res.json(await package.deletePackage(req.body, req.params))
 })
 
 //get all drivers
@@ -135,6 +64,18 @@ app.get('/driver/:id', async (req, res) => {
     const driver = await Driver.findById(req.body.id)
 
     res.json(driver)
+})
+
+//get the cities of all drivers
+app.get('/driver/cities', async (req, res) => {
+    const d = await Driver.find()
+    //for each driver get the city property and add to list
+    const cities = []
+    d.forEach((driver) => {
+        cities.push(driver.city)
+    })
+
+    res.json(cities)
 })
 
 //create new driver
@@ -184,83 +125,6 @@ app.delete('/driver/delete/:id', async (req, res) => {
 
     res.json(output)
 })
-
-// const verifyJWT = (req, res, next) => {
-//     const token = req.headers['x-access-token']?.split(' ')[1]
-
-//     if(token) {
-//         jwt.verify(token, process.env.PASSPORTSECRET, (err, decoded) => {
-//             if (err) return res.json({isLoggedIn: false, message: "Failed to authenticate"})
-//             req.user = {}
-//             req.user.id = decoded.id
-//             req.user.username = decoded.username
-//             next()
-//         })
-//     } else {
-//         res.json({message: "Incorrect token given", isLoggedIn: false})
-//     }
-// }
-
-// app.get('/getUsername', verifyJWT, (req, res) => {
-//     res.json({isLoggedIn: true, username: req.user.username})
-// })
-
-// app.post('/register', async (req, res) => {
-//     const user = req.body
-
-//     const takenUsername = await User.findOne({username: user.username})
-
-//     if(takenUserName){
-//         res.json({message: "Username is taken"})
-//     }else{
-//         user.password = await bcrypt.hash(req.body.password, 10)
-
-//         const dbUser = new User({
-//             username: user.username.toLowerCase(),
-//             password: user.password,
-//             type: user.type,
-//             driverID: user.driverID
-//         })
-
-//         dbUser.save()
-//         res.json({message: 'Success'})
-//     }
-// })
-
-// app.post('/login', (req, res) => {
-//     User.findOne({username: req.body.username})
-//     .then(dbUser => {
-//         if(!dbUser) {
-//             return res.json({
-//                 message: "Invalid Username or Password"
-//             })
-//         }
-//         bcrypt.compare(req.body.password, dbUser.password)
-//         .then(isCorrect => {
-//             if(isCorrect) {
-//                 const payload = {
-//                     id: dbUser._id,
-//                     username: dbUser.username,
-//                     type: dbUser.type
-//                 }
-
-//                 jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: 86400},
-//                     (err, token) => {
-//                         if (err) return res.json({message: err})
-//                         return res.json({
-//                             message: "Success",
-//                             token: "Bearer " + token
-//                         })
-//                     }
-//                 )
-//             }else{
-//                 return res.json({
-//                     message: "Invalid Username or Password"
-//                 })
-//             }
-//         })
-//     })
-// })
 
 
 app.listen(3001, () => console.log("server connected on 3001"))
