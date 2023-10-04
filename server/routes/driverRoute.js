@@ -1,5 +1,5 @@
-const Package = require('./models/package')
-const Driver = require('./models/driver')
+const Package = require('../models/package')
+const Driver = require('../models/driver')
 
 const updatePackagesDriverID = async (driver, newID) => {
     driver.packages.forEach(async package => {
@@ -29,7 +29,7 @@ exports.getAllDriverCities = async () =>{
     d.forEach((driver) => {
         cities.push(driver.city)
     })
-
+    
     return cities
 }
 

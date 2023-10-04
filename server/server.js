@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const cors = require('cors')
+const package = require('./routes/packageRoute.js')
+const driver = require('./routes/driverRoute.js')
 const dotenv = require('dotenv')
-const package = require('./packageRoute.js')
-const driver = require('./driverRoute.js')
 dotenv.config()
 const app = express()
 app.use(express.json())
@@ -61,7 +61,7 @@ app.get('/driver/:id', async (req, res) => {
 })
 
 //get the cities of all drivers
-app.get('/driver/cities', async (req, res) => {
+app.get('/drivers/cities', async (req, res) => {
     res.json(await driver.getAllDriverCities())
 })
 

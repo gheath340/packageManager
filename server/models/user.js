@@ -16,7 +16,7 @@ const userSchema = new Schema({
     },
     driverID :{
         type: String,
-        required: true
+        required: false
     }
 }, {timestamps: true})
 

@@ -4,20 +4,15 @@ import { PackageList } from "../components/packageList"
 import { useState, useEffect } from 'react'
 import { AddPackageModal } from "../components/addPackageModal"
 
-
 const API_BASE = "http://localhost:3001"
 
 export function PackagePage() {
     const [packages, setPackages] = useState([])
     const [cities, setCities] = useState([])
 
-    //get all packages on page load
+    //get all packages and cities on page load
     useEffect(() => {
-    getPackages()
-    }, [])
-
-    //get all cities on page load
-    useEffect(() => {
+        getPackages()
         getCities()
     }, [])
 
@@ -65,7 +60,7 @@ export function PackagePage() {
         setPackages([...packages, data])
     }
 
-        const editPackage = async (id, newPackageInfo) => {
+    const editPackage = async (id, newPackageInfo) => {
         const newDriverID = await getDriverID(newPackageInfo["city"])
         const data = await fetch(API_BASE + "/package/update/" + id, {
             method: "PUT",
@@ -97,7 +92,7 @@ export function PackagePage() {
       }
 
     const getCities = () => {
-        fetch(API_BASE + "/driver/cities")
+        fetch(API_BASE + "/drivers/cities")
         .then(res => res.json())
         .then(data => setCities(data))
         .catch(err => console.error("Error: ", err))

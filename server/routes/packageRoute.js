@@ -1,5 +1,5 @@
-const Package = require('./models/package')
-const Driver = require('./models/driver')
+const Package = require('../models/package')
+const Driver = require('../models/driver')
 
 //delete package from old drivers list and add it to the new one
 const updatePackageCity = async (p, driver1, body, params) => {
