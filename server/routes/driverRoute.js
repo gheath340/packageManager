@@ -29,14 +29,14 @@ exports.getAllDriverCities = async () =>{
     d.forEach((driver) => {
         cities.push(driver.city)
     })
-    
+
     return cities
 }
 
 exports.addDriver = async (body) => {
-    const d = new Driver({ driverID: body.driverID, packages: body.packages, 
-        active: body.active, lastStop: body.lastStop, nextStop: body.nextStop, 
-        city: body.city })
+    const d = new Driver({ username: body.username, password: body.password, 
+        driverID: body.driverID, packages: body.packages, active: body.active, 
+        lastStop: body.lastStop, nextStop: body.nextStop, city: body.city })
     d.save()
 
     return d

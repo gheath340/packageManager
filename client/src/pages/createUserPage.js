@@ -21,15 +21,16 @@ export function CreateUserPage(adduser) {
     }
 
     const onSubmit = () => {
+        toast.done('User successfully created')
         //addUser(newUser)
     }
 
     const EmptyInputsError = () => {
-        toast.error('Please fill in all fields.', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });
+        toast.error('Please fill in all fields', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });
     }
 
-    const UsedTbaError = () => {
-        toast.error('TBA has already been assigned', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });  
+    const UsedUsernameError = () => {
+        toast.error('Username has already been assigned', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });  
     }
 
     const errorCheck = () => {
@@ -55,7 +56,7 @@ export function CreateUserPage(adduser) {
         <div className="flex flex-col items-center h-full">
             <NavBar />
             <div className="text-4xl mt-5 xl:mt-10">Create User</div>
-            <div className="flex w-full h-full justify-center items-center gap-x-2">
+            <div onKeyDown={handleSubmitPress} className="flex w-full h-full justify-center items-center gap-x-2">
             <div className="flex flex-col items-center">
                     <label>Username</label>
                     <label>Password</label>
@@ -96,8 +97,8 @@ export function CreateUserPage(adduser) {
             </div>
             </div>
             <button onClick={errorCheck} className="border 
-                  border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full">
-                                                           <Link to="/">Add</Link></button>
+                border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full">
+                Add</button>
         </div>
     )
 }

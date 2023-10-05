@@ -17,7 +17,7 @@ mongoose.connect(process.env.DB_PATH,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-    .then(() => console.log("Connected"))
+    .then(() => console.log("DB Connected"))
     .catch(console.error)
 
 //get all packages
@@ -81,4 +81,4 @@ app.delete('/driver/delete/:id', async (req, res) => {
 })
 
 
-app.listen(3001, () => console.log("server connected on 3001"))
+app.listen(3001, () => console.log("Server: 3001"))

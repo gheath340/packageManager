@@ -61,9 +61,9 @@ export function DriverPage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({driverID: newDriverInfo["driverID"], packages: newDriverInfo["packages"], 
-            active: newDriverInfo["active"], lastStop: newDriverInfo["lastStop"], 
-            nextStop: newDriverInfo["nextStop"], city: newDriverInfo["city"]})
+            body: JSON.stringify({username: newDriverInfo["username"], password: newDriverInfo["password"],
+            driverID: newDriverInfo["driverID"], packages: newDriverInfo["packages"], active: newDriverInfo["active"], 
+            lastStop: newDriverInfo["lastStop"], nextStop: newDriverInfo["nextStop"], city: newDriverInfo["city"]})
         }).then(res => res.json())
 
         setDrivers([...drivers, data])

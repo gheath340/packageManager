@@ -3,7 +3,7 @@ import { useState } from "react"
 import { toast } from "react-toastify"
 
 export function NewDriverForm({ addDriver, toggleModal, drivers }) {
-    const [newDriver, setNewDriver] = useState({"driverID": "", "packages": [], "active": false, "lastStop": "N/A", "nextStop": "N/A", "city": ""})
+    const [newDriver, setNewDriver] = useState({"username": "", "password": "", "driverID": "", "packages": [], "active": false, "lastStop": "N/A", "nextStop": "N/A", "city": ""})
 
     const handleSubmitPress = (event) => {
         if (event.key === "Enter") {
@@ -25,6 +25,10 @@ export function NewDriverForm({ addDriver, toggleModal, drivers }) {
     const EmptyInputsError = () => {
         toast.error('Please fill in all fields.', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });
     }
+    
+    const usedUsernameError = () => {
+        toast.error('Username has already been assigned', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });  
+    }
 
     const UsedError = () => {
         toast.error('Driver ID or city has already been assigned', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });  
@@ -40,6 +44,9 @@ export function NewDriverForm({ addDriver, toggleModal, drivers }) {
                 if (newDriver["driverID"] === d.driverID || newDriver["city"] === d.city){
                     UsedError()
                     failed = true
+                }else if (newDriver['username'] === d.username){
+                    usedUsernameError()
+                    failed = true
                 }
             })
        }
@@ -52,10 +59,22 @@ export function NewDriverForm({ addDriver, toggleModal, drivers }) {
         <>
             <div onKeyDown={handleSubmitPress} className="flex justify-center items-center gap-x-2">
                 <div className="flex flex-col items-center">
+                    <label>Username</label>
+                    <label>Password</label>
                     <label>Driver ID</label>
                     <label>City</label>
                 </div>
                 <div className="flex flex-col divide-y divide-gray-300">
+                <input className="focus:outline-none" 
+                        placeholder="Username" 
+                        value={newDriver.username}  
+                        onChange={handleInputChange} 
+                        name="username"></input>
+                        <input className="focus:outline-none" 
+                        placeholder="Password" 
+                        value={newDriver.password} 
+                        onChange={handleInputChange} 
+                        name="password"></input>
                 <input className="focus:outline-none" 
                             placeholder="Driver ID" 
                             value={newDriver.driverID} 
