@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 
 
 export function CreateUserPage(adduser) {
-    const [newUser, setNewUser] = useState({username: "", password: "", type: "", driverID: ""})
+    const [newUser, setNewUser] = useState({username: "", password: "", type: "", 
+        driverID: ""})
 
     //update package info everytime a field is changed
     const handleInputChange = (e) => {
@@ -26,16 +27,20 @@ export function CreateUserPage(adduser) {
     }
 
     const EmptyInputsError = () => {
-        toast.error('Please fill in all fields', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });
+        toast.error('Please fill in all fields', { hideProgressBar: true, 
+            closeOnClick: true, pauseOnHover: true });
     }
 
     const UsedUsernameError = () => {
-        toast.error('Username has already been assigned', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });  
+        toast.error('Username has already been assigned', { hideProgressBar: true, 
+            closeOnClick: true, pauseOnHover: true });  
     }
 
     const errorCheck = () => {
         let failed = false
-        if (newUser["username"] === "" || newUser["password"] === "" || newUser["type"] === "" || (newUser["type"] === "driver" && newUser["city"] === "")){
+        if (newUser["username"] === "" || newUser["password"] === "" || 
+            newUser["type"] === "" || 
+            (newUser["type"] === "driver" && newUser["city"] === "")){
             EmptyInputsError()
             failed = true
         }else{
@@ -56,7 +61,9 @@ export function CreateUserPage(adduser) {
         <div className="flex flex-col items-center h-full">
             <NavBar />
             <div className="text-4xl mt-5 xl:mt-10">Create User</div>
-            <div onKeyDown={handleSubmitPress} className="flex w-full h-full justify-center items-center gap-x-2">
+            <div className="flex flex-col justify-center items-center w-full h-full gap-5">
+            <div onKeyDown={handleSubmitPress} className="flex justify-center
+                items-center gap-4">
             <div className="flex flex-col items-center">
                     <label>Username</label>
                     <label>Password</label>
@@ -96,9 +103,10 @@ export function CreateUserPage(adduser) {
                 <div></div>
             </div>
             </div>
-            <button onClick={errorCheck} className="border 
-                border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full">
-                Add</button>
+            <button onClick={errorCheck} className="border border-gray-700 rounded-md 
+            hover:scale-110 hover:duration-200 p-1">
+                Add User</button>
+            </div>
         </div>
     )
 }

@@ -4,7 +4,8 @@ import { toast } from "react-toastify"
 
 
 export function EditDriverForm({ id, city, driverID, editDriver, toggleModal, drivers }) {
-    const [newDriver, setNewDriver] = useState({"id": id, "city": city, "driverID": driverID})
+    const [newDriver, setNewDriver] = useState({"id": id, "city": city, 
+        "driverID": driverID})
 
     const handleSubmitPress = (event) => {
         if (event.key === "Enter") {
@@ -24,17 +25,18 @@ export function EditDriverForm({ id, city, driverID, editDriver, toggleModal, dr
     }
 
     const EmptyInputsError = () => {
-        toast.error('Please fill in all fields.', { hideProgressBar: true, closeOnClick: true, pauseOnHover: true });
+        toast.error('Please fill in all fields.', { hideProgressBar: true, 
+            closeOnClick: true, pauseOnHover: true });
     }
 
     const UsedError = () => {
-        toast.error('Driver ID or city has already been assigned', { hideProgressBar: true, closeOnClick: true, 
-                                                                     pauseOnHover: true });
+        toast.error('Driver ID or city has already been assigned', { hideProgressBar: true, 
+            closeOnClick: true, pauseOnHover: true });
     }
     
     const cityChangeError = () => {
-        toast.error('Can not change city while packages are assigned.', { hideProgressBar: true, closeOnClick: true, 
-            pauseOnHover: true });
+        toast.error('Can not change city while packages are assigned.', { 
+            hideProgressBar: true, closeOnClick: true, pauseOnHover: true });
     }
 
     const errorCheck = () => {
@@ -64,7 +66,8 @@ export function EditDriverForm({ id, city, driverID, editDriver, toggleModal, dr
 
     return (
         <>
-            <div onKeyDown={handleSubmitPress} className="flex justify-center items-center gap-x-2">
+            <div onKeyDown={handleSubmitPress} className="flex justify-center items-center 
+                gap-x-2">
                 <div className="flex flex-col items-center">
                     <label>Driver ID</label>
                     <label>City</label>
@@ -84,8 +87,12 @@ export function EditDriverForm({ id, city, driverID, editDriver, toggleModal, dr
                 </div>
             </div>
             <div className="flex w-1/2 items-center gap-x-2">
-                <button onClick={errorCheck} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/drivers">Submit</Link></button>
-                <button onClick={toggleModal} className="border border-gray-700 rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full"><Link to="/drivers">Cancel</Link></button>
+                <button onClick={errorCheck} className="border border-gray-700 rounded-md 
+                    hover:scale-110 hover:duration-200 p-1 mt-3 w-full">
+                    <Link to="/drivers">Submit</Link></button>
+                <button onClick={toggleModal} className="border border-gray-700 
+                    rounded-md hover:scale-110 hover:duration-200 p-1 mt-3 w-full">
+                    <Link to="/drivers">Cancel</Link></button>
             </div>
         </>
     )

@@ -52,9 +52,10 @@ export function PackagePage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({tba: newPackageInfo["tba"], weight: newPackageInfo["weight"], 
-            item: newPackageInfo["item"], location: newPackageInfo["location"], city: newPackageInfo["city"], 
-            driverID: driverID})
+            body: JSON.stringify({tba: newPackageInfo["tba"], 
+                weight: newPackageInfo["weight"], item: newPackageInfo["item"], 
+                location: newPackageInfo["location"], city: newPackageInfo["city"], 
+                driverID: driverID})
         }).then(res => res.json())
 
         setPackages([...packages, data])
@@ -67,8 +68,9 @@ export function PackagePage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({tba: newPackageInfo["tba"], weight: newPackageInfo["weight"], 
-            item: newPackageInfo["item"], location: newPackageInfo["location"], city: newPackageInfo["city"], 
+            body: JSON.stringify({tba: newPackageInfo["tba"], 
+            weight: newPackageInfo["weight"], item: newPackageInfo["item"], 
+            location: newPackageInfo["location"], city: newPackageInfo["city"], 
             driverID: newPackageInfo["driverID"], newDriverID: newDriverID})
         }).then(res => res.json())
 
@@ -103,10 +105,12 @@ export function PackagePage() {
             <NavBar />
             <div className="text-4xl mt-5 mb-5 xl:mt-10 xl:mb-10">Packages</div>
             <div className="flex flex-row w-full justify-evenly items-start py-10">
-                <PackageList packages={packages} deletePackage={deletePackage} editPackage={checkNewPackageFields} 
+                <PackageList packages={packages} deletePackage={deletePackage} 
+                    editPackage={checkNewPackageFields} 
                     cities={cities}/>
             </div>
-            <AddPackageModal addPackage={checkNewPackageFields} cities={cities} packages={packages}/>
+            <AddPackageModal addPackage={checkNewPackageFields} cities={cities} 
+                packages={packages}/>
         </div>
     )
 }
