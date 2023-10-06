@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { UserIcon } from "./userIcon";
+import { CreateUserModal } from "./createUserModal";
 
 export function NavBar() {
     
@@ -9,7 +9,7 @@ export function NavBar() {
             <div className="text-xl hover:scale-110"><Link to="/">Home</Link></div>
             <div className="text-xl hover:scale-110"><Link to="/packages">Packages</Link></div>
             <div className="text-xl hover:scale-110"><Link to="/drivers">Drivers</Link></div>
-            <UserIcon />
+            <CreateUserModal />
        </div>
        <div className="border border-black w-11/12 lg:w-5/6"></div>
        </>
