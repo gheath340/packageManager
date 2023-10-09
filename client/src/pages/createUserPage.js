@@ -55,7 +55,6 @@ export function CreateUserPage(adduser) {
             onSubmit()
        }
     }
-    
 
     return (
         <div className="flex flex-col items-center h-full">

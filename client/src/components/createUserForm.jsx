@@ -15,7 +15,7 @@ export function CreateUserForm({ addUser, toggleModal, users }) {
 
     const onSubmit = () => {
         toggleModal()
-        addUser(newUser)
+        //addUser(newUser)
         toast.done('User successfully created')
     }
 
@@ -39,7 +39,7 @@ export function CreateUserForm({ addUser, toggleModal, users }) {
         let failed = false
         if (newUser["username"] === "" || newUser["password"] === "" || 
             newUser["type"] === "" || 
-            (newUser["type"] === "driver" && newUser["city"] === "")){
+            (newUser["type"] === "driver" && newUser["driverID"] === "")){
             EmptyInputsError()
             failed = true
         }else{
@@ -90,7 +90,7 @@ export function CreateUserForm({ addUser, toggleModal, users }) {
                         <option>Admin</option>
                         </select>
                 {newUser.type === "Driver" && (
-                    <input className="focus:outline-none cursor-pointer" 
+                    <input className="focus:outline-none" 
                     placeholder="DriverID" 
                     value={newUser.driverID}
                     onChange={handleInputChange} 

@@ -3,13 +3,19 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const cors = require('cors')
-const package = require('./routes/packageRoute.js')
-const driver = require('./routes/driverRoute.js')
-const dotenv = require('dotenv')
-dotenv.config()
+
+const dotenv = require('dotenv').config()
+
 const app = express()
 app.use(express.json())
 app.use(cors())
+
+const package = require('./routers/packageRouter.js')
+const driver = require('./routers/driverRouter.js')
+const user = require('./routes/userRouter.js')
+
+//const package = require('./routes/packageRoute.js')
+//const driver = require('./routes/driverRoute.js')
 
 
 //connect to mongodb database
@@ -19,6 +25,10 @@ mongoose.connect(process.env.DB_PATH,{
 })
     .then(() => console.log("DB Connected"))
     .catch(console.error)
+
+app.use(package)
+app.use(driver)
+app.use(user)
 
 //get all packages
 app.get('/packages', async (req, res) => {
@@ -78,6 +88,10 @@ app.put('/driver/update/:id', async (req, res) => {
 //delete driver based on id
 app.delete('/driver/delete/:id', async (req, res) => {
     res.json(await driver.deleteDriver(req.params.id))
+})
+
+app.post("/user/add", async (req,res) => {
+    res.json(await user.addUser(req.body))
 })
 
 
