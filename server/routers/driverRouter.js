@@ -12,14 +12,14 @@ const {
 router.use(
     cors({
         credentials: true,
-        origin: "http://localhost:3000"
+        origin: "*"
     })
 )
 
 router.get('/drivers', getDrivers)
-router.get('driver/:id', getDriverOnID)
-router.get('driver/:city', getDriverOnCity)
-router.get('drivers/cities', getAllDriverCities)
+router.get('/driver/:id', getDriverOnID)
+router.get('/driver/:city', getDriverOnCity)
+router.get('/drivers/cities', getAllDriverCities)
 
 
 module.exports = router

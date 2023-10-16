@@ -6,7 +6,7 @@ const { test } = require("../controllers/userController")
 router.use(
     cors({
         credentials: true,
-        origin: "http://localhost:3001"
+        origin: "*"
     })
 )
 
