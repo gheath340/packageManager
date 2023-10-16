@@ -19,14 +19,6 @@ const updateDriverPackages = (p, driver) => {
         driver[0].packages[index] = p
 }
 
-exports.getPackages  = async () => {
-    return await Package.find()
-}
-
-exports.getPackage = async (id) => {
-    return await Package.findById(id)
-}
-
 const getPackages = async (req, res) => {
     res.json(await Package.find())
 }

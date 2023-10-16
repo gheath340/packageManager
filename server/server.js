@@ -30,21 +30,6 @@ app.use(package)
 app.use(driver)
 app.use(user)
 
-//create new driver
-app.post('/driver/add', async (req, res) => {
-    res.json(await driver.addDriver(req.body))
-})
-
-//update driver info
-app.put('/driver/update/:id', async (req, res) => {
-    res.json(await driver.updateDriver(req.body, req.params))
-})
-
-//delete driver based on id
-app.delete('/driver/delete/:id', async (req, res) => {
-    res.json(await driver.deleteDriver(req.params.id))
-})
-
 app.post("/user/add", async (req,res) => {
     res.json(await user.addUser(req.body))
 })

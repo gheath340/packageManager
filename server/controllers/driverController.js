@@ -32,7 +32,7 @@ const getAllDriverCities = async (req, res) => {
 
     res.json(cities)
 }
-const addDriver = async (req, res) => {
+const addDriver = (req, res) => {
     const d = new Driver({ username: req.body.username, password: req.body.password, 
         driverID: req.body.driverID, packages: req.body.packages, active: req.body.active, 
         lastStop: req.body.lastStop, nextStop: req.body.nextStop, city: req.body.city })
@@ -41,10 +41,39 @@ const addDriver = async (req, res) => {
     return d
 }
 
+const updateDriver = async (req, res) => {
+    const d = await Driver.findById(req.params.id)
+    if (d.driverID !== req.body.driverID){
+        updatePackagesDriverID(d, req.body.driverID)
+    }
+    d.driverID = req.body.driverID
+    d.city = req.body.city
+
+    d.save()
+    return d
+}
+
+const deleteDriver = async (req, res) => {
+    const d = await Driver.findById(req.params.id)
+    let output
+    
+    if (Array.isArray(d.packages) && d.packages.length) {
+        output = true
+    }else{
+        output = false
+        const d = await Driver.findByIdAndDelete(req.params.id)
+    }
+
+    return output
+}
+
 module.exports = {
     getDrivers,
     getDriverOnID,
     getDriverOnCity,
     getAllDriverCities,
-
+    addDriver,
+    updateDriver,
+    deleteDriver,
+    
 }
