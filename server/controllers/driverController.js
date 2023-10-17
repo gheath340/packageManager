@@ -29,7 +29,6 @@ const getAllDriverCities = async (req, res) => {
     d.forEach((driver) => {
         cities.push(driver.city)
     })
-
     res.json(cities)
 }
 const addDriver = (req, res) => {
@@ -38,7 +37,7 @@ const addDriver = (req, res) => {
         lastStop: req.body.lastStop, nextStop: req.body.nextStop, city: req.body.city })
     d.save()
 
-    return d
+    res.json(d)
 }
 
 const updateDriver = async (req, res) => {
@@ -50,7 +49,7 @@ const updateDriver = async (req, res) => {
     d.city = req.body.city
 
     d.save()
-    return d
+    res.json(d)
 }
 
 const deleteDriver = async (req, res) => {
@@ -64,7 +63,7 @@ const deleteDriver = async (req, res) => {
         const d = await Driver.findByIdAndDelete(req.params.id)
     }
 
-    return output
+    res.json(output)
 }
 
 module.exports = {
@@ -75,5 +74,5 @@ module.exports = {
     addDriver,
     updateDriver,
     deleteDriver,
-    
+
 }

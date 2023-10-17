@@ -31,7 +31,7 @@ const addPackage = async (req, res) => {
     const p = new Package({ tba: req.body.tba, weight: req.body.weight, item: req.body.item, 
         location: req.body.location, city: req.body.city, driverID: req.body.driverID })
 
-    const driver = await Driver.find({ driverID: body.driverID })
+    const driver = await Driver.find({ driverID: req.body.driverID })
     driver[0].packages.push(p)
 
     driver[0].save()
@@ -44,7 +44,7 @@ const updatePackage = async (req, res) => {
     const p = await Package.findById(req.params.id)
     const d = await Driver.find( { driverID: req.body.driverID })
 
-    if (p.city !== req.params.city) {
+    if (p.city !== req.body.city) {
         updatePackageCity(p, d, req.body, req.params)
     }
 
@@ -66,6 +66,7 @@ const updatePackage = async (req, res) => {
 const deletePackage = async (req, res) => {
     const p = await Package.findByIdAndDelete(req.params.id)
     const d = await Driver.find( { driverID: req.body.driverID })
+    console.log(req.body)
 
     d[0].packages = d[0].packages.filter(package => package._id.toString() !== req.params.id)
 

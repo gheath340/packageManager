@@ -24,11 +24,11 @@ const driverSchema = new Schema({
     },
     lastStop: {
         type: String,
-        default: "not active"
+        default: "Not active"
     },
     nextStop: {
         type: String,
-        default: "not active"
+        default: "Not active"
     },
     city: {
         type: String,

@@ -17,10 +17,10 @@ router.use(
     })
 )
 
-router.get('/packages', getPackages)
-router.get('/package/:id', getPackage)
-router.post('package/add', addPackage)
-router.put('package/update/:id', updatePackage)
-router.delete('package/delete/:id', deletePackage)
+router.get('/', getPackages)
+router.get('/:id', getPackage)
+router.post('/add', addPackage)
+router.put('/update/:id', updatePackage)
+router.delete('/delete/:id', deletePackage)
 
 module.exports = router

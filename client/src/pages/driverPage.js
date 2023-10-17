@@ -35,7 +35,7 @@ export function DriverPage() {
       }
 
     const deleteDriver = async id => {
-        const data = await fetch(API_BASE + "/driver/delete/" + id, {
+        const data = await fetch(API_BASE + "/drivers/delete/" + id, {
           method: "DELETE"})
           .then(res => res.json())
         
@@ -56,7 +56,7 @@ export function DriverPage() {
     }
 
     const addDriver = async (newDriverInfo) => {
-        const data = await fetch(API_BASE + "/driver/add" , {
+        const data = await fetch(API_BASE + "/drivers/add" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -67,13 +67,12 @@ export function DriverPage() {
                 lastStop: newDriverInfo["lastStop"], nextStop: newDriverInfo["nextStop"], 
                 city: newDriverInfo["city"]})
         }).then(res => res.json())
-
         setDrivers([...drivers, data])
     }
 
     //add a check when updating city, do not allow if driver has packages assigned
     const editDriver = async (id, newDriverInfo) => {
-        const data = await fetch(API_BASE + "/driver/update/" + id, {
+        const data = await fetch(API_BASE + "/drivers/update/" + id, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

@@ -19,12 +19,12 @@ router.use(
     })
 )
 
-router.get('/drivers', getDrivers)
-router.get('/driver/:id', getDriverOnID)
-router.get('/driver/:city', getDriverOnCity)
-router.get('/drivers/cities', getAllDriverCities)
-router.post('/driver/add', addDriver)
-router.put('/driver/update/:id', updateDriver)
-router.delete('/driver/delete/:id', deleteDriver)
+router.get('/', getDrivers)
+//router.get('/id/:id', getDriverOnID)
+router.get('/city/:city', getDriverOnCity)
+router.get('/cities', getAllDriverCities)
+router.post('/add', addDriver)
+router.put('/update/:id', updateDriver)
+router.delete('/delete/:id', deleteDriver)
 
 module.exports = router

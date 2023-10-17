@@ -1,7 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const cors = require('cors')
-const { test } = require("../controllers/userController")
+const { 
+    addUser,
+
+ } = require("../controllers/userController")
 
 router.use(
     cors({
@@ -10,6 +13,6 @@ router.use(
     })
 )
 
-router.get('/testuser', test)
+router.get('/add', addUser)
 
 module.exports = router

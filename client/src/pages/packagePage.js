@@ -24,7 +24,7 @@ export function PackagePage() {
     }
 
     const deletePackage = async (id, dID) => {
-        const data = await fetch(API_BASE + "/package/delete/" + id, {
+        const data = await fetch(API_BASE + "/packages/delete/" + id, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -47,7 +47,7 @@ export function PackagePage() {
 
     const addPackage = async (newPackageInfo) => {
         const driverID = await getDriverID(newPackageInfo["city"])
-        const data = await fetch(API_BASE + "/package/add" , {
+        const data = await fetch(API_BASE + "/packages/add" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -63,7 +63,7 @@ export function PackagePage() {
 
     const editPackage = async (id, newPackageInfo) => {
         const newDriverID = await getDriverID(newPackageInfo["city"])
-        const data = await fetch(API_BASE + "/package/update/" + id, {
+        const data = await fetch(API_BASE + "/packages/update/" + id, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -87,7 +87,7 @@ export function PackagePage() {
     }
 
     const getDrivers =  async (driverCity) => {
-        const data = await fetch(API_BASE + "/driver/" + driverCity)
+        const data = await fetch(API_BASE + "/drivers/city/" + driverCity)
         .then(res => res.json())
         .catch(err => console.error("Error: ", err))
         return data
