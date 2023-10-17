@@ -109,7 +109,9 @@ export function DriverPage() {
                 password: newUser["password"], type: newUser["type"], 
                 driverID: newUser["driverID"], city: newUser["city"]})
         }).then(res => res.json())
-        setDrivers([...drivers, data])
+        if (data["user"]){
+            setDrivers([...drivers, data["user"]])
+        }
     }
 
     const getUsers = async () => {

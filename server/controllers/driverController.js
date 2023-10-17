@@ -1,5 +1,6 @@
 const Package = require('../models/package')
 const Driver = require('../models/driver')
+const User = require("../models/user")
 
 const updatePackagesDriverID = async (driver, newID) => {
     driver.packages.forEach(async package => {
@@ -12,10 +13,6 @@ const updatePackagesDriverID = async (driver, newID) => {
 
 const getDrivers = async (req, res) => {
     res.json(await Driver.find())
-}
-
-const getDriverOnID = async (req, res) => {
-    res.json(await Driver.findById(req.body.id))
 }
 
 const getDriverOnCity = async (req, res) => {
@@ -60,7 +57,8 @@ const deleteDriver = async (req, res) => {
         output = true
     }else{
         output = false
-        const d = await Driver.findByIdAndDelete(req.params.id)
+        const driver = await Driver.findByIdAndDelete(req.params.id)
+        const user = await User.deleteOne({ username: d.username})
     }
 
     res.json(output)
@@ -68,7 +66,6 @@ const deleteDriver = async (req, res) => {
 
 module.exports = {
     getDrivers,
-    getDriverOnID,
     getDriverOnCity,
     getAllDriverCities,
     addDriver,

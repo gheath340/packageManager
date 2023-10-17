@@ -3,7 +3,6 @@ const router = express.Router()
 const cors = require('cors')
 const { 
     getDrivers,
-    getDriverOnID,
     getDriverOnCity,
     getAllDriverCities,
     addDriver,
@@ -20,7 +19,6 @@ router.use(
 )
 
 router.get('/', getDrivers)
-//router.get('/id/:id', getDriverOnID)
 router.get('/city/:city', getDriverOnCity)
 router.get('/cities', getAllDriverCities)
 router.post('/add', addDriver)

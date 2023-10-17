@@ -39,7 +39,8 @@ export function CreateUserForm({ addUser, toggleModal, users, cities }) {
         let failed = false
         if (newUser["username"] === "" || newUser["password"] === "" || 
             newUser["type"] === "" || 
-            (newUser["type"] === "driver" && newUser["driverID"] === "")){
+            (newUser["type"] === "driver" && newUser["driverID"] === "") || 
+            (newUser["type"] === "driver" && newUser["city"] === "")){
             EmptyInputsError()
             failed = true
         }else{
