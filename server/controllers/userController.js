@@ -35,6 +35,7 @@ const addUser = async (req, res) => {
             const user = await User.create({
                 username, password, type
             })
+            res.json({message: "Created Admin"})
         }
         if (type === "Driver"){
             const user = await User.create({
@@ -43,6 +44,7 @@ const addUser = async (req, res) => {
             const driver = await Driver.create({
                 username, password, type, driverID, city
             })
+            res.json({message: "Created Driver"})
         }
 
     }catch (err) {

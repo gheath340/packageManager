@@ -34,7 +34,7 @@ export function CreateUserForm({ addUser, toggleModal, users, cities }) {
         toast.error('Username or driverID has already been assigned', { hideProgressBar: true, 
             closeOnClick: true, pauseOnHover: true });
     }
-
+    //add new error checks
     const errorCheck = () => {
         let failed = false
         if (newUser["username"] === "" || newUser["password"] === "" || 

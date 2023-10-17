@@ -5,7 +5,7 @@ import { UserIcon } from "./userIcon";
 
 
 
-export function CreateUserModal({ id, driverID, city, editDriver, drivers, cities }) {
+export function CreateUserModal({ addUser, users, cities }) {
     const [modal, setModal] = useState(false)
 
     //sets modal opened or closed
@@ -25,9 +25,8 @@ export function CreateUserModal({ id, driverID, city, editDriver, drivers, citie
                     h-1/2 lg:h-3/5 lg:w-2/5 bg-white border border-gray-700 rounded-lg 
                     gap-y-5 top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
                     <h1 className="text-3xl">Create User</h1>
-                    <CreateUserForm id={id} city={city} driverID={driverID} 
-                    editDriver={editDriver} toggleModal={toggleModal} drivers={drivers} 
-                    cities={cities}/>
+                    <CreateUserForm addUser={addUser} toggleModal={toggleModal} 
+                        users={users} cities={cities}/>
                 </div>
             </>
             )} 

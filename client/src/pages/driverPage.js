@@ -97,10 +97,23 @@ export function DriverPage() {
         getDrivers()
     }
 
+    const addUser = async (newUser) => {
+        const data = await fetch(API_BASE + "/users/add" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({username: newUser["username"], 
+                password: newUser["password"], type: newUser["type"], 
+                driverID: newUser["driverID"], city: newUser["city"]})
+        }).then(res => res.json())
+        setDrivers([...drivers, data])
+    }
+
     return (
         <>
         <div className="flex flex-col items-center h-full">
-            <NavBar cities={cities}/>
+            <NavBar cities={cities} addUser={addUser}/>
             <div className="text-4xl mt-5 xl:mt-10">Drivers</div>
             <div className="flex flex-col lg:flex-row w-full pt-36 pb-4 justify-evenly 
                 items-center">

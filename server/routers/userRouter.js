@@ -13,6 +13,6 @@ router.use(
     })
 )
 
-router.get('/add', addUser)
+router.post('/add', addUser)
 
 module.exports = router
