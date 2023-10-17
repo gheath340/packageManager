@@ -26,7 +26,7 @@ export function PackagePage() {
     }
 
     const getUsers = async () => {
-        const data = await fetch(API_BASE + "/users")
+        await fetch(API_BASE + "/users")
         .then(res => res.json())
         .then(data => setCities(data))
         .catch(err => console.error("Error: ", err))
@@ -110,7 +110,7 @@ export function PackagePage() {
     }
 
     const addUser = async (newUser) => {
-        const data = await fetch(API_BASE + "/users/add" , {
+        await fetch(API_BASE + "/users/add" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

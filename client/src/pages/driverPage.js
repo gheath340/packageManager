@@ -2,7 +2,6 @@ import React from "react"
 import { NavBar } from "../components/navBar"
 import { useState, useEffect } from 'react'
 import { DriverList } from "../components/driverList"
-import { AddDriverModal } from "../components/addDriverModal"
 
 
 const API_BASE = "http://localhost:3001"
@@ -46,7 +45,7 @@ export function DriverPage() {
       }
 
     const getUsers = async () => {
-        const data = await fetch(API_BASE + "/users")
+        await fetch(API_BASE + "/users")
         .then(res => res.json())
         .then(data => setCities(data))
         .catch(err => console.error("Error: ", err))
@@ -62,30 +61,6 @@ export function DriverPage() {
         }else{
             alert("Can only delete drivers with no packages assigned.")
         }
-    }
-
-    //makes sure fields are filled out properly
-    const checkNewDriverFields = (newDriverInfo, type) => {
-        if (type === "add"){
-            addDriver(newDriverInfo)
-        }else if (type === "edit") {
-            editDriver(newDriverInfo["id"], newDriverInfo)
-        }
-    }
-
-    const addDriver = async (newDriverInfo) => {
-        const data = await fetch(API_BASE + "/drivers/add" , {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({username: newDriverInfo["username"], 
-                password: newDriverInfo["password"],driverID: newDriverInfo["driverID"], 
-                packages: newDriverInfo["packages"], active: newDriverInfo["active"], 
-                lastStop: newDriverInfo["lastStop"], nextStop: newDriverInfo["nextStop"], 
-                city: newDriverInfo["city"]})
-        }).then(res => res.json())
-        setDrivers([...drivers, data])
     }
 
     //add a check when updating city, do not allow if driver has packages assigned
@@ -129,10 +104,9 @@ export function DriverPage() {
             <div className="flex flex-col lg:flex-row w-full pt-36 pb-4 justify-evenly 
                 items-center">
                 <DriverList drivers={drivers} deleteDriver={deleteDriver} 
-                    editDriver={checkNewDriverFields} toggleOpenDriverItems={toggleOpenDriverItems} 
+                    editDriver={editDriver} toggleOpenDriverItems={toggleOpenDriverItems} 
                 openDriverItems={openDriverItems}/>
             </div>
-            <AddDriverModal addDriver={checkNewDriverFields} drivers={drivers}/>
         </div>
         </>
     )
