@@ -3,7 +3,7 @@ import { useState } from "react"
 import { toast } from "react-toastify"
 
 
-export function CreateUserForm({ addUser, toggleModal, users }) {
+export function CreateUserForm({ addUser, toggleModal, users, cities }) {
     const [newUser, setNewUser] = useState({username: "", password: "", type: "", 
         driverID: ""})
 
@@ -65,7 +65,10 @@ export function CreateUserForm({ addUser, toggleModal, users }) {
                     <label>Password</label>
                     <label>Type</label>
                     {newUser.type === "Driver" && (
-                        <label>DriverID</label>
+                        <>
+                            <label>DriverID</label>
+                            <label>City</label>
+                        </>
                     )}
                 </div>
                 <div className="flex flex-col divide-y divide-gray-300">
@@ -90,11 +93,23 @@ export function CreateUserForm({ addUser, toggleModal, users }) {
                         <option>Admin</option>
                         </select>
                 {newUser.type === "Driver" && (
-                    <input className="focus:outline-none" 
-                    placeholder="DriverID" 
-                    value={newUser.driverID}
-                    onChange={handleInputChange} 
-                    name="DriverID"></input>
+                    <>
+                        <input className="focus:outline-none" 
+                        placeholder="DriverID" 
+                        value={newUser.driverID}
+                        onChange={handleInputChange} 
+                        name="DriverID"></input>
+                        <select className="focus:outline-none cursor-pointer" 
+                            value={newUser.city}
+                            onChange={handleInputChange} 
+                            name="city">
+                            <option></option>
+                            {cities 
+                                ? cities.map((city) => {
+                                    return <option key={city}>{city}</option>})
+                                : null} 
+                        </select>
+                    </>
                 )
                 }
                 <div></div>
