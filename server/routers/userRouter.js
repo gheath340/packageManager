@@ -3,6 +3,8 @@ const router = express.Router()
 const cors = require('cors')
 const { 
     addUser,
+    getUsers,
+
 
  } = require("../controllers/userController")
 
@@ -14,5 +16,6 @@ router.use(
 )
 
 router.post('/add', addUser)
+router.get('/', getUsers)
 
 module.exports = router

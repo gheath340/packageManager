@@ -11,11 +11,13 @@ export function DriverPage() {
     const [drivers, setDrivers] = useState([])
     const [openDriverItems, setOpenDriverItems] = useState([])
     const [cities, setCities] = useState([])
+    const [users, setUsers] = useState([])
 
     //get all drivers on page load
     useEffect(() => {
         getDrivers()
         getCities()
+        getUsers()
     }, [])
 
     //change which drivers are open for showing package lists
@@ -110,10 +112,17 @@ export function DriverPage() {
         setDrivers([...drivers, data])
     }
 
+    const getUsers = async () => {
+        const data = await fetch(API_BASE + "/users")
+        .then(res => res.json())
+        .then(data => setCities(data))
+        .catch(err => console.error("Error: ", err))
+    }
+
     return (
         <>
         <div className="flex flex-col items-center h-full">
-            <NavBar cities={cities} addUser={addUser}/>
+            <NavBar cities={cities} addUser={addUser} users={users}/>
             <div className="text-4xl mt-5 xl:mt-10">Drivers</div>
             <div className="flex flex-col lg:flex-row w-full pt-36 pb-4 justify-evenly 
                 items-center">

@@ -5,7 +5,7 @@ import { toast } from "react-toastify"
 
 export function CreateUserForm({ addUser, toggleModal, users, cities }) {
     const [newUser, setNewUser] = useState({username: "", password: "", type: "", 
-        driverID: ""})
+        driverID: "", city: ""})
 
     const handleSubmitPress = (event) => {
         if (event.key === "Enter") {
@@ -15,7 +15,7 @@ export function CreateUserForm({ addUser, toggleModal, users, cities }) {
 
     const onSubmit = () => {
         toggleModal()
-        //addUser(newUser)
+        addUser(newUser)
         toast.done('User successfully created')
     }
 
@@ -95,20 +95,15 @@ export function CreateUserForm({ addUser, toggleModal, users, cities }) {
                 {newUser.type === "Driver" && (
                     <>
                         <input className="focus:outline-none" 
-                        placeholder="DriverID" 
-                        value={newUser.driverID}
-                        onChange={handleInputChange} 
-                        name="DriverID"></input>
-                        <select className="focus:outline-none cursor-pointer" 
+                            placeholder="DriverID" 
+                            value={newUser.driverID}
+                            onChange={handleInputChange} 
+                            name="driverID"></input>
+                        <input className="focus:outline-none" 
+                            placeholder="City"
                             value={newUser.city}
                             onChange={handleInputChange} 
-                            name="city">
-                            <option></option>
-                            {cities 
-                                ? cities.map((city) => {
-                                    return <option key={city}>{city}</option>})
-                                : null} 
-                        </select>
+                            name="city"></input>
                     </>
                 )
                 }

@@ -35,7 +35,7 @@ const addUser = async (req, res) => {
             const user = await User.create({
                 username, password, type
             })
-            res.json({message: "Created Admin"})
+            res.json(user)
         }
         if (type === "Driver"){
             const user = await User.create({
@@ -44,16 +44,21 @@ const addUser = async (req, res) => {
             const driver = await Driver.create({
                 username, password, type, driverID, city
             })
-            res.json({message: "Created Driver"})
+            res.json(driver)
         }
 
-    }catch (err) {
-
+    }catch (error) {
+        console.log(error)
     }
+}
+
+const getUsers = async (req, res) => {
+    res.json(await User.find())
 }
 
 
 module.exports = {
     addUser,
-    
+    getUsers,
+
 }
