@@ -39,13 +39,17 @@ const addDriver = (req, res) => {
 
 const updateDriver = async (req, res) => {
     const d = await Driver.findById(req.params.id)
+    const u = await User.findOne({ username: d.username })
     if (d.driverID !== req.body.driverID){
         updatePackagesDriverID(d, req.body.driverID)
     }
     d.driverID = req.body.driverID
     d.city = req.body.city
+    u.driverID = req.body.driverID
+    u.city = req.body.city
 
     d.save()
+    u.save()
     res.json(d)
 }
 

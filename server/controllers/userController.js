@@ -1,6 +1,8 @@
 const User = require("../models/user")
 const Driver = require("../models/driver")
 
+const { hashPassword, comparePassowrd } = require('../helpers/auth')
+
 
 const addUser = async (req, res) => {
     try {
@@ -31,18 +33,19 @@ const addUser = async (req, res) => {
                 error: "DriverID and city is required for drivers"
             })
         }
+        const hashedPass = await hashPassword(password)
         if (type === "Admin"){
             const user = await User.create({
-                username, password, type
+                username, password: hashedPass, type
             })
             res.json({"user": user})
         }
         if (type === "Driver"){
             const user = await User.create({
-                username, password, type, driverID, city
+                username, password: hashedPass, type, driverID, city
             })
             const driver = await Driver.create({
-                username, password, type, driverID, city
+                username, password: hashedPass, type, driverID, city
             })
             res.json({"user": driver})
         }

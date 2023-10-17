@@ -45,6 +45,13 @@ export function DriverPage() {
         .catch(err => console.error("Error: ", err))
       }
 
+    const getUsers = async () => {
+        const data = await fetch(API_BASE + "/users")
+        .then(res => res.json())
+        .then(data => setCities(data))
+        .catch(err => console.error("Error: ", err))
+    }
+
     const deleteDriver = async id => {
         const data = await fetch(API_BASE + "/drivers/delete/" + id, {
           method: "DELETE"})
@@ -88,8 +95,8 @@ export function DriverPage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({city: newDriverInfo["city"], driverID: 
-                newDriverInfo["driverID"]})
+            body: JSON.stringify({ city: newDriverInfo["city"], 
+            driverID: newDriverInfo["driverID"]})
         }).then(res => res.json())
 
         let newDrivers = drivers
@@ -112,13 +119,6 @@ export function DriverPage() {
         if (data["user"]){
             setDrivers([...drivers, data["user"]])
         }
-    }
-
-    const getUsers = async () => {
-        const data = await fetch(API_BASE + "/users")
-        .then(res => res.json())
-        .then(data => setCities(data))
-        .catch(err => console.error("Error: ", err))
     }
 
     return (

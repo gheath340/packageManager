@@ -9,17 +9,33 @@ const API_BASE = "http://localhost:3001"
 export function PackagePage() {
     const [packages, setPackages] = useState([])
     const [cities, setCities] = useState([])
+    const [users, setUsers] = useState([])
 
     //get all packages and cities on page load
     useEffect(() => {
         getPackages()
         getCities()
+        getUsers()
     }, [])
 
     const getPackages = () => {
         fetch(API_BASE + "/packages")
         .then(res => res.json())
         .then(data => setPackages(data))
+        .catch(err => console.error("Error: ", err))
+    }
+
+    const getUsers = async () => {
+        const data = await fetch(API_BASE + "/users")
+        .then(res => res.json())
+        .then(data => setCities(data))
+        .catch(err => console.error("Error: ", err))
+    }
+
+    const getCities = () => {
+        fetch(API_BASE + "/drivers/cities")
+        .then(res => res.json())
+        .then(data => setCities(data))
         .catch(err => console.error("Error: ", err))
     }
 
@@ -91,18 +107,23 @@ export function PackagePage() {
         .then(res => res.json())
         .catch(err => console.error("Error: ", err))
         return data
-      }
+    }
 
-    const getCities = () => {
-        fetch(API_BASE + "/drivers/cities")
-        .then(res => res.json())
-        .then(data => setCities(data))
-        .catch(err => console.error("Error: ", err))
+    const addUser = async (newUser) => {
+        const data = await fetch(API_BASE + "/users/add" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({username: newUser["username"], 
+                password: newUser["password"], type: newUser["type"], 
+                driverID: newUser["driverID"], city: newUser["city"]})
+        }).then(res => res.json())
     }
 
     return (
         <div className="flex flex-col items-center h-full">
-            <NavBar cities={cities} />
+            <NavBar cities={cities} addUser={addUser} users={users}/>
             <div className="text-4xl mt-5 mb-5 xl:mt-10 xl:mb-10">Packages</div>
             <div className="flex flex-row w-full justify-evenly items-start py-10">
                 <PackageList packages={packages} deletePackage={deletePackage} 

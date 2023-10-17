@@ -16,7 +16,6 @@ export function CreateUserForm({ addUser, toggleModal, users, cities }) {
     const onSubmit = () => {
         toggleModal()
         addUser(newUser)
-        toast.done('User successfully created')
     }
 
     //updates driver info whenever a field is changed
