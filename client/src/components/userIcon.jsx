@@ -11,13 +11,13 @@ export function UserIcon({ toggleModal }) {
   };
 
   return (
-    <div className="relative">
-      <FontAwesomeIcon
-        icon={faUser}
-        onClick={() => toggleOpen()}
-        className="text-2xl 
-                hover:scale-110 cursor-pointer"
-      />
+    <>
+      <div
+        class="text-sm font-semibold leading-6 text-gray-900 cursor-pointer"
+        onClick={toggleOpen}
+      >
+        Log in <span aria-hidden="true">&rarr;</span>
+      </div>
       {isOpen && (
         <>
           <div
@@ -41,6 +41,6 @@ export function UserIcon({ toggleModal }) {
           </div>
         </>
       )}
-    </div>
+    </>
   );
 }

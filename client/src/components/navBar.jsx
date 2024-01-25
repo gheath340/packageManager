@@ -9,7 +9,7 @@ export function NavBar({ cities, addUser, users }) {
         aria-label="Global"
       >
         <div class="flex lg:flex-1">
-          <a href="#" class="-m-1.5 p-1.5">
+          <a class="-m-1.5 p-1.5">
             <span class="sr-only">Your Company</span>
             <img
               class="h-8 w-auto"
@@ -52,16 +52,14 @@ export function NavBar({ cities, addUser, users }) {
           </div>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+          <CreateUserModal cities={cities} addUser={addUser} users={users} />
         </div>
       </nav>
       <div class="lg:hidden" role="dialog" aria-modal="true">
         <div class="fixed inset-0 z-10"></div>
         <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div class="flex items-center justify-between">
-            <a href="#" class="-m-1.5 p-1.5">
+            <a class="-m-1.5 p-1.5">
               <span class="sr-only">Your Company</span>
               <img
                 class="h-8 w-auto"
@@ -101,10 +99,7 @@ export function NavBar({ cities, addUser, users }) {
                 </div>
               </div>
               <div class="py-6">
-                <a
-                  href="#"
-                  class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
+                <a class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                   Log in
                 </a>
               </div>
@@ -128,7 +123,7 @@ export function NavBar({ cities, addUser, users }) {
 //       <div className="text-xl hover:scale-110">
 //         <Link to="/drivers">Drivers</Link>
 //       </div>
-//       <CreateUsx erModal cities={cities} addUser={addUser} users={users} />
+//       <CreateUserModal cities={cities} addUser={addUser} users={users} />
 //     </div>
 //     <div className="border border-black w-11/12 lg:w-5/6"></div>
 //   </>
