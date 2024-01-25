@@ -18,7 +18,7 @@ export function NavBar({ cities, addUser, users }) {
             />
           </a>
         </div>
-        <div class="hidden lg:flex lg:gap-x-12">
+        <div class="flex gap-x-12">
           <div class="text-sm font-semibold leading-6 text-gray-900 hover:scale-110">
             <Link to="/">Home</Link>
           </div>
@@ -29,7 +29,7 @@ export function NavBar({ cities, addUser, users }) {
             <Link to="/drivers">Drivers</Link>
           </div>
         </div>
-        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div class="flex lg:flex-1 lg:justify-end">
           <a class="text-sm font-semibold leading-6 text-gray-900 hover:scale-110">
             Log in <span aria-hidden="true">&rarr;</span>
           </a>
@@ -51,7 +51,7 @@ export function NavBar({ cities, addUser, users }) {
 //       <div className="text-xl hover:scale-110">
 //         <Link to="/drivers">Drivers</Link>
 //       </div>
-//       <CreateUserModal cities={cities} addUser={addUser} users={users} />
+//       <CreateUsx erModal cities={cities} addUser={addUser} users={users} />
 //     </div>
 //     <div className="border border-black w-11/12 lg:w-5/6"></div>
 //   </>
