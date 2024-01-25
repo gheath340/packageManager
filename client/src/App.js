@@ -20,4 +20,4 @@ export function App() {
   );
 }
 
-export default AppF;
+export default App;

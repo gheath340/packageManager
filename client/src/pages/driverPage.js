@@ -103,8 +103,8 @@ export function DriverPage() {
 
   return (
     <>
+      <NavBar cities={cities} addUser={addUser} users={users} />
       <div className="flex flex-col items-center h-full">
-        <NavBar cities={cities} addUser={addUser} users={users} />
         <div className="text-4xl mt-5 xl:mt-10">Drivers</div>
         <div
           className="flex flex-col lg:flex-row w-full pt-36 pb-4 justify-evenly 

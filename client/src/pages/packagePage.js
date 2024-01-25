@@ -134,22 +134,24 @@ export function PackagePage() {
   };
 
   return (
-    <div className="flex flex-col items-center h-full">
+    <>
       <NavBar cities={cities} addUser={addUser} users={users} />
-      <div className="text-4xl mt-5 mb-5 xl:mt-10 xl:mb-10">Packages</div>
-      <div className="flex flex-row w-full justify-evenly items-start py-10">
-        <PackageList
-          packages={packages}
-          deletePackage={deletePackage}
-          editPackage={checkNewPackageFields}
+      <div className="flex flex-col items-center h-full">
+        <div className="text-4xl mt-5 mb-5 xl:mt-10 xl:mb-10">Packages</div>
+        <div className="flex flex-row w-full justify-evenly items-start py-10">
+          <PackageList
+            packages={packages}
+            deletePackage={deletePackage}
+            editPackage={checkNewPackageFields}
+            cities={cities}
+          />
+        </div>
+        <AddPackageModal
+          addPackage={checkNewPackageFields}
           cities={cities}
+          packages={packages}
         />
       </div>
-      <AddPackageModal
-        addPackage={checkNewPackageFields}
-        cities={cities}
-        packages={packages}
-      />
-    </div>
+    </>
   );
 }
