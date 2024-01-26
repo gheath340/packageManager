@@ -13,7 +13,7 @@ export function UserIcon({ toggleModal }) {
   return (
     <>
       <div
-        className="text-sm font-semibold leading-6 text-gray-900 cursor-pointer"
+        className="text-lg leading-6 text-gray-900 cursor-pointer hover:scale-110"
         onClick={toggleOpen}
       >
         Log in <span aria-hidden="true">&rarr;</span>
