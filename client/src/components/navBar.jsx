@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useState, Fragment } from "react";
 import { CreateUserModal } from "./createUserModal";
 import { MobileNavBar } from "./mobileNavBar";
 

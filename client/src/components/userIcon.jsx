@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { useState } from "react";
 import React from "react";
 
@@ -13,7 +11,7 @@ export function UserIcon({ toggleModal }) {
   return (
     <>
       <div
-        className="text-lg leading-6 text-gray-900 cursor-pointer hover:scale-110"
+        className="text-lg leading-6 text-gray-900 cursor-pointer lg:hover:scale-110"
         onClick={toggleOpen}
       >
         Log in <span aria-hidden="true">&rarr;</span>
