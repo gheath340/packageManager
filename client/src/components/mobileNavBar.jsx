@@ -3,7 +3,6 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-import { CreateUserModal } from "./createUserModal";
 
 export function MobileNavBar({ cities, addUser, users }) {
   const [modal, setModal] = useState(false);
@@ -57,11 +56,9 @@ export function MobileNavBar({ cities, addUser, users }) {
                   </div>
                 </div>
                 <div className="py-6">
-                  <CreateUserModal
-                    cities={cities}
-                    addUser={addUser}
-                    users={users}
-                  />
+                  <div className="text-lg leading-6 text-gray-900 cursor-pointer lg:hover:scale-110">
+                    Log in <span aria-hidden="true">&rarr;</span>
+                  </div>
                 </div>
               </div>
             </div>
