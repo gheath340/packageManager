@@ -11,6 +11,7 @@ export function App() {
     <>
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/packages" element={<PackagePage />} />
         <Route path="/drivers" element={<DriverPage />} />
         <Route path="/login" element={<LoginPage />} />

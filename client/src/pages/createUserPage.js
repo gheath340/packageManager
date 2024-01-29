@@ -4,7 +4,9 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
-export function CreateUserPage(adduser) {
+const API_BASE = "http://localhost:3001";
+
+export function CreateUserPage() {
   const [newUser, setNewUser] = useState({
     username: "",
     password: "",
@@ -24,47 +26,69 @@ export function CreateUserPage(adduser) {
     }
   };
 
-  const onSubmit = () => {
-    toast.done("User successfully created");
-    //addUser(newUser)
+  const addUser = async () => {
+    await fetch(API_BASE + "/users/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: newUser["username"],
+        password: newUser["password"],
+        type: newUser["type"],
+        driverID: newUser["driverID"],
+      }),
+    }).then((res) => res.json());
   };
 
-  const EmptyInputsError = () => {
-    toast.error("Please fill in all fields", {
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-    });
-  };
-
-  const UsedUsernameError = () => {
-    toast.error("Username has already been assigned", {
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-    });
-  };
-
-  const errorCheck = () => {
-    let failed = false;
+  const emptyInputsError = () => {
     if (
       newUser["username"] === "" ||
       newUser["password"] === "" ||
       newUser["type"] === "" ||
-      (newUser["type"] === "driver" && newUser["city"] === "")
+      (newUser["type"] === "driver" && newUser["driverID"] === "")
     ) {
-      EmptyInputsError();
-      failed = true;
+      toast.error("Please fill in all fields", {
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+      return false;
     } else {
-      //         package.forEach(p => {
-      //             if (newPackage["tba"] === p.tba){
-      //                 UsedTbaError()
-      //                 failed = true
-      //             }
-      //         })
+      return true;
     }
-    if (!failed) {
-      onSubmit();
+  };
+
+  const getUsers = async () => {
+    const data = await fetch(API_BASE + "/users/")
+      .then((res) => res.json())
+      .catch((err) => console.error("Error: ", err));
+    return data;
+  };
+
+  const usedUsernameError = async () => {
+    //get all usernames and check against them
+    const users = await getUsers();
+    for (let i = 0; i <= users.length; i++) {
+      if (users[i]["username"] === newUser["username"]) {
+        toast.error("Username has already been assigned", {
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+        });
+        return false;
+      }
+      return true;
+    }
+  };
+
+  const errorCheck = async () => {
+    let usernameErr = await usedUsernameError();
+    let emptyErr = emptyInputsError();
+    console.log(usernameErr);
+    console.log(emptyErr);
+    if (emptyErr & usernameErr) {
+      addUser();
     }
   };
 
