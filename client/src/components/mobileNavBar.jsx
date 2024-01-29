@@ -56,8 +56,8 @@ export function MobileNavBar({ cities, addUser, users }) {
                   </div>
                 </div>
                 <div className="py-6">
-                  <div className="text-lg leading-6 text-gray-900 cursor-pointer lg:hover:scale-110">
-                    Log in <span aria-hidden="true">&rarr;</span>
+                  <div className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 cursor-pointer">
+                    Log in
                   </div>
                 </div>
               </div>
