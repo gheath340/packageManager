@@ -95,65 +95,121 @@ export function CreateUserPage() {
   return (
     <>
       <NavBar />
-      <div className="flex flex-col items-center h-full">
-        <div className="text-4xl mt-5 xl:mt-10">Create User</div>
-        <div className="flex flex-col justify-center items-center w-full h-full gap-5">
-          <div
-            onKeyDown={handleSubmitPress}
-            className="flex justify-center
-                items-center gap-4"
-          >
-            <div className="flex flex-col items-center">
-              <label>Username</label>
-              <label>Password</label>
-              <label>Type</label>
-              {newUser.type === "Driver" && <label>DriverID</label>}
-            </div>
-            <div className="flex flex-col divide-y divide-gray-300">
-              <input
-                className="focus:outline-none"
-                placeholder="Username"
-                value={newUser.username}
-                onChange={handleInputChange}
-                name="username"
-              ></input>
-              <input
-                className="focus:outline-none"
-                placeholder="Password"
-                value={newUser.password}
-                onChange={handleInputChange}
-                name="password"
-              ></input>
-              <select
-                className="focus:outline-none"
-                placeholder="Type"
-                value={newUser.type}
-                onChange={handleInputChange}
-                name="type"
+      <div className="flex min-h-full flex-1 flex-col justify-start py-12 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <img
+            className="mx-auto h-10 w-auto"
+            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            alt="Your Company"
+          />
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            Create Account
+          </h2>
+        </div>
+        <div
+          className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm"
+          onKeyDown={handleSubmitPress}
+        >
+          <form className="space-y-4" action="#" method="POST">
+            <div>
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium leading-6 text-gray-900"
               >
-                <option></option>
-                <option>Driver</option>
-                <option>Admin</option>
-              </select>
-              {newUser.type === "Driver" && (
+                Username
+              </label>
+              <div className="mt-2">
                 <input
-                  className="focus:outline-none cursor-pointer"
-                  placeholder="DriverID"
-                  value={newUser.driverID}
+                  value={newUser.username}
                   onChange={handleInputChange}
-                  name="DriverID"
-                ></input>
-              )}
-              <div></div>
+                  name="username"
+                  id="username"
+                  type="username"
+                  autoComplete="username"
+                  required
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
             </div>
-          </div>
-          <button
-            onClick={errorCheck}
-            className="border border-gray-700 rounded-md 
-            hover:scale-110 hover:duration-200 p-1"
-          >
-            Add User
-          </button>
+
+            <div>
+              <div className="flex items-center justify-between">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Password
+                </label>
+              </div>
+              <div className="mt-2">
+                <input
+                  value={newUser.password}
+                  onChange={handleInputChange}
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center justify-between">
+                <label
+                  htmlFor="type"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Type
+                </label>
+              </div>
+              <div className="mt-2">
+                <select
+                  value={newUser.type}
+                  onChange={handleInputChange}
+                  id="type"
+                  name="type"
+                  type="type"
+                  required
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white h-9"
+                >
+                  <option></option>
+                  <option>Driver</option>
+                  <option>Admin</option>
+                </select>
+              </div>
+            </div>
+            {newUser.type === "Driver" && (
+              <div>
+                <div className="flex items-center justify-between">
+                  <label
+                    htmlFor="driverID"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Driver ID
+                  </label>
+                </div>
+                <div className="mt-2">
+                  <input
+                    value={newUser.driverID}
+                    onChange={handleInputChange}
+                    id="driverID"
+                    name="driverID"
+                    type="driverID"
+                    required
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+            )}
+            <button
+              onClick={errorCheck}
+              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Create user
+            </button>
+            <div></div>
+          </form>
         </div>
       </div>
     </>
