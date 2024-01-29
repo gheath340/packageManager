@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { CreateUserModal } from "./createUserModal";
 import { MobileNavBar } from "./mobileNavBar";
 
+//just adding this to test
 export function NavBar({ cities, addUser, users }) {
   return (
     <header className="bg-white">
