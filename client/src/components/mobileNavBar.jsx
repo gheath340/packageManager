@@ -29,7 +29,7 @@ export function MobileNavBar({ cities, addUser, users }) {
           <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <div className="-m-1.5 p-1.5">
-                <img className="h-2 w-auto" src={Logo} alt="" />
+                <img className="h-12 w-auto" src={Logo} alt="" />
               </div>
               <button
                 type="button"
@@ -54,7 +54,10 @@ export function MobileNavBar({ cities, addUser, users }) {
                 </div>
                 <div className="py-6">
                   <div className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 cursor-pointer">
-                    Log in
+                    <Link to="/create">Create user</Link>
+                  </div>
+                  <div className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 cursor-pointer">
+                    <Link to="/login">Sign out</Link>
                   </div>
                 </div>
               </div>
