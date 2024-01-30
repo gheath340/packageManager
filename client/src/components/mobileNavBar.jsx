@@ -3,6 +3,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import Logo from "../box.png";
 
 export function MobileNavBar({ cities, addUser, users }) {
   const [modal, setModal] = useState(false);
@@ -28,11 +29,7 @@ export function MobileNavBar({ cities, addUser, users }) {
           <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <div className="-m-1.5 p-1.5">
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                  alt=""
-                />
+                <img className="h-2 w-auto" src={Logo} alt="" />
               </div>
               <button
                 type="button"

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { MobileNavBar } from "./mobileNavBar";
+import Logo from "../box.png";
 
 export function NavBar({ cities, addUser, users }) {
   return (
@@ -11,11 +12,7 @@ export function NavBar({ cities, addUser, users }) {
         <div className="flex lg:justify-center lg:flex-1">
           <div className="-m-1.5 p-1.5 hover:scale-110">
             <Link to="/">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
+              <img className="h-12 w-auto" src={Logo} />
             </Link>
           </div>
         </div>
