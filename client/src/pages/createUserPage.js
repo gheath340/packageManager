@@ -14,6 +14,10 @@ export function CreateUserPage() {
     driverID: "",
   });
 
+  const clearFields = () => {
+    setNewUser({ username: "", password: "", type: "", driverID: "" });
+  };
+
   //update package info everytime a field is changed
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +43,11 @@ export function CreateUserPage() {
         driverID: newUser["driverID"],
       }),
     }).then((res) => res.json());
+    toast.success("User created", {
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+    });
   };
 
   const emptyInputsError = () => {
@@ -67,9 +76,8 @@ export function CreateUserPage() {
   };
 
   const usedUsernameError = async () => {
-    //get all usernames and check against them
     const users = await getUsers();
-    for (let i = 0; i <= users.length; i++) {
+    for (let i = 0; i <= users.length - 1; i++) {
       if (users[i]["username"] === newUser["username"]) {
         toast.error("Username has already been assigned", {
           hideProgressBar: true,
@@ -78,8 +86,8 @@ export function CreateUserPage() {
         });
         return false;
       }
-      return true;
     }
+    return true;
   };
 
   const errorCheck = async () => {
@@ -110,7 +118,7 @@ export function CreateUserPage() {
           className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm"
           onKeyDown={handleSubmitPress}
         >
-          <form className="space-y-4" action="#" method="POST">
+          <div className="space-y-4" action="#" method="POST">
             <div>
               <label
                 htmlFor="username"
@@ -203,13 +211,16 @@ export function CreateUserPage() {
               </div>
             )}
             <button
-              onClick={errorCheck}
+              onClick={() => {
+                errorCheck();
+                clearFields();
+              }}
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Create user
             </button>
             <div></div>
-          </form>
+          </div>
         </div>
       </div>
     </>

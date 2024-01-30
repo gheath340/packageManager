@@ -35,7 +35,9 @@ export function NavBar({ cities, addUser, users }) {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-center lg:gap-x-12">
           <div className="text-lg leading-6 text-gray-900 cursor-pointer lg:hover:scale-110">
-            Log in <span aria-hidden="true">&rarr;</span>
+            <Link to="/login">
+              Log in <span aria-hidden="true">&rarr;</span>
+            </Link>
           </div>
         </div>
       </nav>
